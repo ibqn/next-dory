@@ -1,8 +1,9 @@
-import { text, timestamp, uuid } from "drizzle-orm/pg-core"
+import { primaryKey, text, timestamp, uuid } from "drizzle-orm/pg-core"
 import { relations, type InferSelectModel } from "drizzle-orm"
 import { schema } from "./schema"
 import { createdAtUpdatedAt } from "./utils"
 import { userRoleTable, type UserRole } from "./role"
+import { Provider } from "../../types"
 
 export const userTable = schema.table("user", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -53,3 +54,19 @@ export const passwordResetTable = schema.table("password_reset", {
 
   ...createdAtUpdatedAt,
 })
+
+export const accountTable = schema.table(
+  "account",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => userTable.id, { onDelete: "cascade" }),
+    provider: text("provider", { enum: Object.values(Provider) as [string, ...string[]] }).notNull(),
+    providerAccountId: text("provider_account_id").notNull(),
+
+    ...createdAtUpdatedAt,
+  },
+  (table) => {
+    return [primaryKey({ name: "pk", columns: [table.provider, table.providerAccountId] })]
+  }
+)
