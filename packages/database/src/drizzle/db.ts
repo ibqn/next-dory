@@ -21,10 +21,8 @@ export const db = drizzle(processEnv.DATABASE_URL, {
     passwordReset: passwordResetTable,
     userRelations,
     sessionRelations,
-
     upload: uploadTable,
     uploadRelations,
-
     role: roleTable,
     roleRelations,
     userRole: userRoleTable,

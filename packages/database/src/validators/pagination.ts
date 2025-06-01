@@ -1,4 +1,4 @@
-import { z } from "zod/v4"
+import { z } from "zod/v3"
 
 export const sortedByValues = ["name", "recent"] as const
 export const sortedBySchema = z.enum(sortedByValues)

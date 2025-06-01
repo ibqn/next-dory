@@ -1,18 +1,18 @@
-import { z } from "zod/v4"
+import { z } from "zod/v3"
 import { paginationSchema } from "./pagination"
 import { createInsertSchema } from "drizzle-zod"
 import { userTable } from "../drizzle/schema/auth"
 
 export const createUserSchema = createInsertSchema(userTable, {
   username: z.string().nonempty(),
-  email: z.email(),
+  email: z.string().email(),
 }).omit({ id: true, createdAt: true, updatedAt: true, passwordHash: true })
 
 export type CreateUserSchema = z.infer<typeof createUserSchema>
 
 export const updateUserSchema = createInsertSchema(userTable, {
   username: z.string().nonempty(),
-  email: z.email(),
+  email: z.string().email(),
   emailVerified: z.coerce.date().nullable().optional(),
 }).omit({ id: true, createdAt: true, updatedAt: true, passwordHash: true })
 
