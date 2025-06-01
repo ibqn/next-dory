@@ -1,0 +1,32 @@
+{
+  "name": "database",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "tsx --env-file-if-exists=.env src/index.ts",
+    "seed": "tsx --env-file-if-exists=.env src/seed.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
+    "argon2": "^0.43.0",
+    "date-fns": "^4.1.0",
+    "drizzle-orm": "^0.44.1",
+    "drizzle-zod": "^0.8.2",
+    "lodash.unset": "^4.5.2",
+    "postgres": "^3.4.7",
+    "zod": "^3.25.46"
+  },
+  "devDependencies": {
+    "@types/lodash.unset": "^4.5.9",
+    "@types/node": "^22.15.29",
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

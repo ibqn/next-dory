@@ -1,0 +1,55 @@
+import { text, timestamp, uuid } from "drizzle-orm/pg-core"
+import { relations, type InferSelectModel } from "drizzle-orm"
+import { schema } from "./schema"
+import { createdAtUpdatedAt } from "./utils"
+import { userRoleTable, type UserRole } from "./role"
+
+export const userTable = schema.table("user", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  username: text("username").notNull().unique(),
+  email: text("email").notNull().unique(),
+  emailVerified: timestamp("email_verified", { withTimezone: true }),
+  passwordHash: text("password_hash"),
+
+  ...createdAtUpdatedAt,
+})
+
+export const userRelations = relations(userTable, ({ one, many }) => ({
+  userRoles: many(userRoleTable),
+}))
+
+export const sessionTable = schema.table("session", {
+  id: text("id").primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => userTable.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+  }).notNull(),
+
+  ...createdAtUpdatedAt,
+})
+
+export const sessionRelations = relations(sessionTable, ({ one }) => ({
+  user: one(userTable, { fields: [sessionTable.userId], references: [userTable.id] }),
+}))
+
+export type User = Omit<InferSelectModel<typeof userTable>, "passwordHash"> & {
+  userRoles?: UserRole[] | null
+}
+
+export type Session = InferSelectModel<typeof sessionTable>
+
+export const passwordResetTable = schema.table("password_reset", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => userTable.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", {
+    withTimezone: true,
+  }).notNull(),
+  token: text("token").notNull().unique(),
+  used: timestamp("used", { withTimezone: true }),
+
+  ...createdAtUpdatedAt,
+})
