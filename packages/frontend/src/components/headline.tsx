@@ -7,7 +7,7 @@ export const Headline = () => {
 
       <p className="text-muted-foreground lg:mt-4l mt-2 text-center leading-relaxed">
         Pulse offers a suite of interactive features to keep your audience engaged nad provide you with valuable
-        insights.
+        insights
       </p>
     </div>
   )
