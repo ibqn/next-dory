@@ -10,22 +10,22 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: ^1.14.3
-        version: 1.14.3(hono@4.7.10)
+        version: 1.14.3(hono@4.7.11)
       '@hono/zod-validator':
         specifier: ^0.7.0
-        version: 0.7.0(hono@4.7.10)(zod@3.25.46)
+        version: 0.7.0(hono@4.7.11)(zod@3.25.47)
       database:
         specifier: workspace:*
         version: link:../database
       drizzle-zod:
         specifier: ~0.7.1
-        version: 0.7.1(drizzle-orm@0.44.1)(zod@3.25.46)
+        version: 0.7.1(drizzle-orm@0.44.1)(zod@3.25.47)
       hono:
-        specifier: ^4.7.10
-        version: 4.7.10
+        specifier: ^4.7.11
+        version: 4.7.11
       hono-pino:
         specifier: ^0.8.0
-        version: 0.8.0(hono@4.7.10)(pino@9.7.0)
+        version: 0.8.0(hono@4.7.11)(pino@9.7.0)
       pino:
         specifier: ^9.7.0
         version: 9.7.0
@@ -33,8 +33,8 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       zod:
-        specifier: ^3.25.46
-        version: 3.25.46
+        specifier: ^3.25.47
+        version: 3.25.47
     devDependencies:
       '@types/node':
         specifier: ^22.15.29
@@ -357,8 +357,8 @@ packages:
       hono: '>=4.0.0'
       pino: '>=7.1.0'
 
-  hono@4.7.10:
-    resolution: {integrity: sha512-QkACju9MiN59CKSY5JsGZCYmPZkA6sIW6OFCUp7qDjZu6S6KHtJHhAc9Uy9mV9F8PJ1/HQ3ybZF2yjCa/73fvQ==}
+  hono@4.7.11:
+    resolution: {integrity: sha512-rv0JMwC0KALbbmwJDEnxvQCeJh+xbS3KEWW5PC9cMJ08Ur9xgatI0HmtgYZfOdOSOeYsp5LO2cOhdI8cLEbDEQ==}
     engines: {node: '>=16.9.0'}
 
   joycon@3.1.1:
@@ -437,8 +437,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  zod@3.25.46:
-    resolution: {integrity: sha512-IqRxcHEIjqLd4LNS/zKffB3Jzg3NwqJxQQ0Ns7pdrvgGkwQsEBdEQcOHaBVqvvZArShRzI39+aMST3FBGmTrLQ==}
+  zod@3.25.47:
+    resolution: {integrity: sha512-+f8+agSYoT9niC0VUL60IuXnr81FJeJ27Lf5YPrmcxTWmygcpGBeEuAAovDDEjkyQ36KyqNswwbhISZ1Z7yY+A==}
 
 snapshots:
 
@@ -517,14 +517,14 @@ snapshots:
   '@esbuild/win32-x64@0.25.3':
     optional: true
 
-  '@hono/node-server@1.14.3(hono@4.7.10)':
+  '@hono/node-server@1.14.3(hono@4.7.11)':
     dependencies:
-      hono: 4.7.10
+      hono: 4.7.11
 
-  '@hono/zod-validator@0.7.0(hono@4.7.10)(zod@3.25.46)':
+  '@hono/zod-validator@0.7.0(hono@4.7.11)(zod@3.25.47)':
     dependencies:
-      hono: 4.7.10
-      zod: 3.25.46
+      hono: 4.7.11
+      zod: 3.25.47
 
   '@types/node@22.15.29':
     dependencies:
@@ -540,10 +540,10 @@ snapshots:
 
   drizzle-orm@0.44.1: {}
 
-  drizzle-zod@0.7.1(drizzle-orm@0.44.1)(zod@3.25.46):
+  drizzle-zod@0.7.1(drizzle-orm@0.44.1)(zod@3.25.47):
     dependencies:
       drizzle-orm: 0.44.1
-      zod: 3.25.46
+      zod: 3.25.47
 
   end-of-stream@1.4.4:
     dependencies:
@@ -592,13 +592,13 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono-pino@0.8.0(hono@4.7.10)(pino@9.7.0):
+  hono-pino@0.8.0(hono@4.7.11)(pino@9.7.0):
     dependencies:
       defu: 6.1.4
-      hono: 4.7.10
+      hono: 4.7.11
       pino: 9.7.0
 
-  hono@4.7.10: {}
+  hono@4.7.11: {}
 
   joycon@3.1.1: {}
 
@@ -686,4 +686,4 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  zod@3.25.46: {}
+  zod@3.25.47: {}
