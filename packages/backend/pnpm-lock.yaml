@@ -13,13 +13,13 @@ importers:
         version: 1.14.3(hono@4.7.11)
       '@hono/zod-validator':
         specifier: ^0.7.0
-        version: 0.7.0(hono@4.7.11)(zod@3.25.47)
+        version: 0.7.0(hono@4.7.11)(zod@3.25.51)
       database:
         specifier: workspace:*
         version: link:../database
       drizzle-zod:
         specifier: ~0.7.1
-        version: 0.7.1(drizzle-orm@0.44.1)(zod@3.25.47)
+        version: 0.7.1(drizzle-orm@0.44.1)(zod@3.25.51)
       hono:
         specifier: ^4.7.11
         version: 4.7.11
@@ -33,8 +33,8 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       zod:
-        specifier: ^3.25.47
-        version: 3.25.47
+        specifier: ^3.25.51
+        version: 3.25.51
     devDependencies:
       '@types/node':
         specifier: ^22.15.29
@@ -437,8 +437,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  zod@3.25.47:
-    resolution: {integrity: sha512-+f8+agSYoT9niC0VUL60IuXnr81FJeJ27Lf5YPrmcxTWmygcpGBeEuAAovDDEjkyQ36KyqNswwbhISZ1Z7yY+A==}
+  zod@3.25.51:
+    resolution: {integrity: sha512-TQSnBldh+XSGL+opiSIq0575wvDPqu09AqWe1F7JhUMKY+M91/aGlK4MhpVNO7MgYfHcVCB1ffwAUTJzllKJqg==}
 
 snapshots:
 
@@ -521,10 +521,10 @@ snapshots:
     dependencies:
       hono: 4.7.11
 
-  '@hono/zod-validator@0.7.0(hono@4.7.11)(zod@3.25.47)':
+  '@hono/zod-validator@0.7.0(hono@4.7.11)(zod@3.25.51)':
     dependencies:
       hono: 4.7.11
-      zod: 3.25.47
+      zod: 3.25.51
 
   '@types/node@22.15.29':
     dependencies:
@@ -540,10 +540,10 @@ snapshots:
 
   drizzle-orm@0.44.1: {}
 
-  drizzle-zod@0.7.1(drizzle-orm@0.44.1)(zod@3.25.47):
+  drizzle-zod@0.7.1(drizzle-orm@0.44.1)(zod@3.25.51):
     dependencies:
       drizzle-orm: 0.44.1
-      zod: 3.25.47
+      zod: 3.25.51
 
   end-of-stream@1.4.4:
     dependencies:
@@ -686,4 +686,4 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  zod@3.25.47: {}
+  zod@3.25.51: {}
