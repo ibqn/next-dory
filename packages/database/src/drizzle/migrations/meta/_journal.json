@@ -15,6 +15,13 @@
       "when": 1748786213593,
       "tag": "0001_wakeful_micromacro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1749072300511,
+      "tag": "0002_chunky_random",
+      "breakpoints": true
     }
   ]
 }

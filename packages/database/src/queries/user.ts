@@ -7,7 +7,9 @@ import type { CreateUserSchema, UpdateUserSchema } from "../validators/user"
 import type { ParamUuidSchema } from "../validators/param"
 
 export const createUserItem = async (input: CreateUserSchema) => {
-  const [user] = await db.insert(userTable).values(input).returning()
+  await db.insert(userTable).values(input).onConflictDoNothing()
+
+  const [user] = await db.select().from(userTable).where(eq(userTable.username, input.username))
 
   return user satisfies User as User
 }
