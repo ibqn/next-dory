@@ -35,9 +35,11 @@ const socialAuthRoute = new Hono<Context>()
     console.log("code", code, "state", state)
     const storedState = getCookie(c, "github_oauth_state") ?? null
     if (code === null || state === null || storedState === null) {
+      console.error("Missing code or state in query parameters or cookie")
       return c.body(null, { status: 400 })
     }
     if (state !== storedState) {
+      console.error("State mismatch: expected", storedState, "but got", state)
       return c.body(null, { status: 400 })
     }
 
