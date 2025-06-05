@@ -3,7 +3,7 @@ import { getCookieServer } from "@/lib/server-cookie"
 import axiosNative from "axios"
 
 const defaultOptions = {
-  baseURL: `${env.NEXT_PUBLIC_API_URL}`,
+  baseURL: `${env.NEXT_PUBLIC_API_URL}/api`,
   withCredentials: true,
   headers: { "Content-Type": "application/json" },
 }

@@ -6,7 +6,7 @@ import { env } from "@/env"
 
 export default function SignInPage() {
   return (
-    <Card className="max-w-sm">
+    <Card className="w-full max-w-sm">
       <CardHeader className="text-center">
         <CardTitle className="text-xl">Welcome back</CardTitle>
         <CardDescription>Login with your GitHub or Google account</CardDescription>
