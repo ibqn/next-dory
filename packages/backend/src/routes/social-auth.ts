@@ -10,6 +10,7 @@ import { createUserItem } from "database/src/queries/user"
 import { env } from "../env"
 import axios from "axios"
 import { z } from "zod/v4"
+import { Provider } from "database/src/types"
 
 const socialAuthRoute = new Hono<Context>()
   .get("/sign-in/github", async (c) => {
@@ -102,7 +103,7 @@ const socialAuthRoute = new Hono<Context>()
 
     const providerAccountId = githubUser.id.toString()
 
-    await createAccount(user.id, "github", providerAccountId)
+    await createAccount(user.id, Provider.github, providerAccountId)
 
     const token = generateSessionToken()
     const session = await createSession(token, user.id)
