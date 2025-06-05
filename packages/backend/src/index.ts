@@ -13,6 +13,7 @@ import { getSessionCookieOptions, sessionCookieName } from "database/src/cookie"
 import { pinoLogger } from "./middleware/pino-logger"
 import { env } from "./env"
 import { userRoute } from "./routes/user"
+import { socialAuthRoute } from "./routes/social-auth"
 
 const app = new Hono<Context>()
 
@@ -64,7 +65,11 @@ app.use(
   }
 )
 
-export const routes = app.basePath("/api").route("/auth", authRoute).route("/user", userRoute)
+export const routes = app
+  .route("/auth", socialAuthRoute)
+  .basePath("/api")
+  .route("/auth", authRoute)
+  .route("/user", userRoute)
 
 const port = env.PORT
 console.log(`Server is running on http://localhost:${port}`)

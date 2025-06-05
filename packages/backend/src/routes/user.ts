@@ -31,13 +31,13 @@ userRoute
       return c.json<ErrorResponse>({ success: false, error: "You do not have permission to view users" }, 403)
     }
 
-    const userItem = await createUserItem({ ...input, organizationId })
+    const userItem = await createUserItem({ ...input })
     return c.json<SuccessResponse<User>>({ success: true, data: userItem, message: "User created" })
   })
   .patch("/:uuid", signedIn, zValidator("param", paramUuidSchema), zValidator("json", updateUserSchema), async (c) => {
     const { uuid } = c.req.valid("param")
     const input = c.req.valid("json")
-    const user = c.get("user")
+    const user = c.get("user") as User
 
     const permission = await havePermission(user.id, Permission.userUpdate)
     if (!permission) {
@@ -60,7 +60,7 @@ userRoute
     }
 
     const userCount = await getUserItemsCount()
-    const userItems = await getUserItems({ organizationId, ...query })
+    const userItems = await getUserItems(query)
 
     return c.json<PaginatedSuccessResponse<User[]>>({
       success: true,
@@ -71,18 +71,13 @@ userRoute
   })
   .delete("/:uuid", signedIn, zValidator("param", paramUuidSchema), async (c) => {
     const { uuid } = c.req.valid("param")
-    const user = c.get("user")
-
-    const organizationId = user?.organizationId
-    if (!organizationId) {
-      return c.json<ErrorResponse>({ success: false, error: "User does not have organization selected" }, 404)
-    }
+    const user = c.get("user") as User
 
     const permission = await havePermission(user.id, Permission.userDelete)
     if (!permission) {
       return c.json<ErrorResponse>({ success: false, error: "You do not have permission to delete users" }, 403)
     }
-    const { id: deletedId } = await deleteUserItem({ uuid, organizationId })
+    const { id: deletedId } = await deleteUserItem({ uuid })
 
     if (!deletedId) {
       throw new HTTPException(404, { message: "User not found" })
@@ -103,13 +98,7 @@ userRoute
       return c.json<ErrorResponse>({ success: false, error: "You do not have permission to view users" }, 403)
     }
 
-    const organizationId = user.organizationId
-
-    if (!organizationId) {
-      return c.json<ErrorResponse>({ success: false, error: "User does not have organization selected" }, 404)
-    }
-
-    const userItem = await getUserItem({ userId, organizationId })
+    const userItem = await getUserItem({ userId })
 
     if (!userItem) {
       return c.json<ErrorResponse>({ success: false, error: "User not found" }, 404)
