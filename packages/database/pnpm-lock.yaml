@@ -25,7 +25,7 @@ importers:
         version: 0.44.2(gel@2.0.1)(postgres@3.4.7)
       drizzle-zod:
         specifier: ~0.7.1
-        version: 0.7.1(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.53)
+        version: 0.7.1(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.56)
       lodash.unset:
         specifier: ^4.5.2
         version: 4.5.2
@@ -33,8 +33,8 @@ importers:
         specifier: ^3.4.7
         version: 3.4.7
       zod:
-        specifier: ^3.25.53
-        version: 3.25.53
+        specifier: ^3.25.56
+        version: 3.25.56
     devDependencies:
       '@types/lodash.unset':
         specifier: ^4.5.9
@@ -751,8 +751,8 @@ packages:
     engines: {node: ^16.13.0 || >=18.0.0}
     hasBin: true
 
-  zod@3.25.53:
-    resolution: {integrity: sha512-BKOKoY3XcGUVkqaalCtFK15LhwR0G0i65AClFpWSXLN2gJNBGlTktukHgwexCTa/dAacPPp9ReryXPWyeZF4LQ==}
+  zod@3.25.56:
+    resolution: {integrity: sha512-rd6eEF3BTNvQnR2e2wwolfTmUTnp70aUTqr0oaGbHifzC3BKJsoV+Gat8vxUMR1hwOKBs6El+qWehrHbCpW6SQ==}
 
 snapshots:
 
@@ -1045,10 +1045,10 @@ snapshots:
       gel: 2.0.1
       postgres: 3.4.7
 
-  drizzle-zod@0.7.1(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.53):
+  drizzle-zod@0.7.1(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.56):
     dependencies:
       drizzle-orm: 0.44.2(gel@2.0.1)(postgres@3.4.7)
-      zod: 3.25.53
+      zod: 3.25.56
 
   env-paths@3.0.0:
     optional: true
@@ -1204,4 +1204,4 @@ snapshots:
       isexe: 3.1.1
     optional: true
 
-  zod@3.25.53: {}
+  zod@3.25.56: {}
