@@ -15,10 +15,10 @@
     "hono-pino": "^0.8.0",
     "pino": "^9.7.0",
     "pino-pretty": "^13.0.0",
-    "zod": "^3.25.51"
+    "zod": "^3.25.53"
   },
   "devDependencies": {
-    "@types/node": "^22.15.29",
+    "@types/node": "^22.15.30",
     "tsx": "^4.19.4"
   }
 }
