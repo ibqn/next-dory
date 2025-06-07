@@ -14,10 +14,10 @@ export default async function Layout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       <Navbar />
 
-      <main className="min-h-[calc(100vh-variable(--navbar-height))]">{children}</main>
+      <main className="flex min-h-[calc(100vh-var(--navbar-height))]">{children}</main>
     </div>
   )
 }
