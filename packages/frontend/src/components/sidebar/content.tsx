@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Item } from "./item"
 import { sidebarItems } from "./item-data"
 import { LogOutIcon } from "lucide-react"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import { useMutation } from "@tanstack/react-query"
 import { getSignout } from "@/api/auth"
 
