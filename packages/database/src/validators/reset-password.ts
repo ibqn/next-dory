@@ -1,7 +1,7 @@
-import { z } from "zod/v3"
+import { z } from "zod/v4"
 
 export const resetPasswordSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
 })
 
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>

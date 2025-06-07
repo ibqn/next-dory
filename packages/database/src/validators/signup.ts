@@ -1,4 +1,4 @@
-import { z } from "zod/v3"
+import { z } from "zod/v4"
 
 export const signupSchema = z.object({
   username: z
@@ -6,7 +6,7 @@ export const signupSchema = z.object({
     .min(3)
     .max(32)
     .regex(/^[a-zA-Z0-9_]+$/),
-  email: z.string().email(),
+  email: z.email(),
   password: z.string().min(6),
 })
 
@@ -17,7 +17,7 @@ export const signupFormSchema = signupSchema
     confirm: z.string().min(6),
   })
   .refine((data) => data.password === data.confirm, {
-    message: "Passwords do not match",
+    error: "Passwords do not match",
     path: ["confirm"],
   })
 

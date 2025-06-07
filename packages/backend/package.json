@@ -10,7 +10,6 @@
     "arctic": "^3.7.0",
     "axios": "^1.9.0",
     "database": "workspace:*",
-    "drizzle-zod": "~0.7.1",
     "hono": "^4.7.11",
     "hono-pino": "^0.8.0",
     "pino": "^9.7.0",
