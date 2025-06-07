@@ -32,7 +32,7 @@ export const AuthButtons = ({ className, ...props }: Props) => {
         Sign In
       </Link>
       <Link href={Route.signUp} className={cn(buttonVariants(), "ring-1 ring-white")}>
-        Sign Un
+        Sign Up
       </Link>
     </div>
   )
