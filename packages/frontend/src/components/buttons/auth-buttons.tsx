@@ -6,7 +6,7 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import { BellIcon } from "lucide-react"
 import Link from "next/link"
 import { UserAvatar } from "@/components/user-avatar"
-import { use, type ComponentProps } from "react"
+import { /* use, */ type ComponentProps } from "react"
 import { cn } from "@/lib/class-names"
 import { buttonVariants } from "../ui/button"
 

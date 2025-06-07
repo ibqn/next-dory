@@ -1,4 +1,5 @@
 import { validateRequest } from "@/auth"
+import { Navbar } from "@/components/navbar"
 import { redirect } from "next/navigation"
 
 export const dynamic = "force-dynamic"
@@ -14,9 +15,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
 
   return (
     <div>
-      <nav>navbar</nav>
+      <Navbar />
 
-      {children}
+      <main className="min-h-[calc(100vh-variable(--navbar-height))]">{children}</main>
     </div>
   )
 }
