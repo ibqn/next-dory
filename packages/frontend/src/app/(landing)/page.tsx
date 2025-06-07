@@ -1,3 +1,4 @@
+import { AuthLoader } from "@/components/auth-loader"
 import { AuthButtons } from "@/components/buttons/auth-buttons"
 import { GetStartedButton } from "@/components/buttons/get-started-button"
 import { Headline } from "@/components/headline"
@@ -9,9 +10,12 @@ import { Suspense } from "react"
 export default function LandingPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-[#e8f0ff] to-[#bad0ee] px-4 pb-20">
-      <Suspense>
-        <AuthButtons className="mt-6 ml-auto" />
-      </Suspense>
+      <nav className="mt-6 ml-auto">
+        <Suspense fallback={<AuthLoader />}>
+          <AuthButtons />
+        </Suspense>
+      </nav>
+
       <div className="relative mx-auto mt-10 flex w-full flex-col items-center gap-y-8 lg:mt-16">
         <Headline />
         <GetStartedButton />
