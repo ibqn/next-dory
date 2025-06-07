@@ -5,10 +5,19 @@ import { Item } from "./item"
 import { sidebarItems } from "./item-data"
 import { LogOutIcon } from "lucide-react"
 import { Button } from "../ui/button"
+import { useMutation } from "@tanstack/react-query"
+import { getSignout } from "@/api/auth"
 
 export const Content = () => {
   const router = useRouter()
   const pathname = usePathname()
+
+  const { mutate: signout } = useMutation({
+    mutationFn: getSignout,
+    onSettled: () => {
+      router.refresh()
+    },
+  })
 
   return (
     <div className="flex h-full flex-col px-3 py-8">
@@ -24,7 +33,7 @@ export const Content = () => {
         })}
 
         <div className="mt-auto w-full">
-          <Button className="inline-flex w-full gap-x-2" variant="outline">
+          <Button className="inline-flex w-full gap-x-2" variant="outline" onClick={() => signout()}>
             <LogOutIcon className="size-4" />
             <span>Sign out</span>
           </Button>
