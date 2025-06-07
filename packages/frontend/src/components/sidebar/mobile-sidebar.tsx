@@ -1,12 +1,13 @@
 "use client"
 
 import { MenuIcon } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/class-names"
 import { buttonVariants } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { Content } from "./content"
+import { VisuallyHidden } from "@/components/visually-hidden"
 
 export const MobileSidebar = () => {
   const [open, setOpen] = useState(false)
@@ -25,6 +26,13 @@ export const MobileSidebar = () => {
         </div>
       </SheetTrigger>
       <SheetContent className="w-[250px] p-0 pt-2" side="left">
+        <VisuallyHidden>
+          <SheetHeader>
+            <SheetTitle>Sidebar</SheetTitle>
+            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+          </SheetHeader>
+        </VisuallyHidden>
+
         <Content />
       </SheetContent>
     </Sheet>
