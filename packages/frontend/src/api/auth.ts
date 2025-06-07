@@ -6,6 +6,7 @@ import type { User } from "database/src/drizzle/schema/auth"
 import type { ResetPasswordSchema } from "database/src/validators/reset-password"
 import type { ParamTokenSchema } from "database/src/validators/param"
 import type { NewPasswordSchema } from "database/src/validators/new-password"
+import { SessionValidationResult } from "database/src/lucia"
 
 export const postSignup = async (formData: SigninSchema) => {
   const response = await axios.post<ApiResponse<User>>("/auth/signup", formData)
@@ -31,6 +32,17 @@ export const getUser = async () => {
 }
 
 export const userQueryOptions = () => queryOptions({ queryKey: ["user"] as const, queryFn: getUser })
+
+export const validate = async (): Promise<SessionValidationResult> => {
+  const { data: response } = await axios.get<ApiResponse<SessionValidationResult>>("/auth/validate")
+  if (!response.success) {
+    return { user: null, session: null }
+  }
+  return response.data
+}
+
+export const validateQueryOptions = () =>
+  queryOptions({ queryKey: ["validate"] as const, queryFn: validate, retry: false })
 
 export const postResetPassword = async (formData: ResetPasswordSchema) => {
   const { data: response } = await axios.post<ApiResponse>("/auth/reset-password", formData)

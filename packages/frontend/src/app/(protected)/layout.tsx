@@ -1,5 +1,4 @@
 import { validateRequest } from "@/auth"
-import Link from "next/link"
 import { redirect } from "next/navigation"
 
 export const dynamic = "force-dynamic"
@@ -15,19 +14,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
 
   return (
     <div>
-      <nav>
-        <ul className="flex flex-row space-x-4">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/sign-in">Sign in</Link>
-          </li>
-          <li>
-            <Link href="/profile">Profile</Link>
-          </li>
-        </ul>
-      </nav>
+      <nav>navbar</nav>
 
       {children}
     </div>
