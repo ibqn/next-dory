@@ -14,6 +14,7 @@ import { pinoLogger } from "./middleware/pino-logger"
 import { env } from "./env"
 import { userRoute } from "./routes/user"
 import { socialAuthRoute } from "./routes/social-auth"
+import { eventRoute } from "./routes/event"
 
 const app = new Hono<Context>()
 
@@ -70,6 +71,7 @@ export const routes = app
   .basePath("/api")
   .route("/auth", authRoute)
   .route("/user", userRoute)
+  .route("/event", eventRoute)
 
 const port = env.PORT
 console.log(`Server is running on http://localhost:${port}`)

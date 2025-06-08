@@ -2,7 +2,13 @@ import { eventTable, type Event } from "../drizzle/schema/event"
 import { db } from "../drizzle/db"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
 import type { User } from "src/drizzle/schema/auth"
-import { asc, desc } from "drizzle-orm"
+import { asc, countDistinct, desc } from "drizzle-orm"
+
+export const getEventItemsCount = async () => {
+  const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
+
+  return count
+}
 
 type GetEventItemOptions = {
   eventId: Event["id"]
