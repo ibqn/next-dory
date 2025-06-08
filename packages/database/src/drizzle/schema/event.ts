@@ -2,7 +2,7 @@ import { primaryKey, text, uuid } from "drizzle-orm/pg-core"
 import { schema } from "./schema"
 import { relations, type InferSelectModel } from "drizzle-orm"
 import { createdAtUpdatedAt } from "./utils"
-import { userTable } from "./auth"
+import { userTable, type User } from "./auth"
 
 export const eventTable = schema.table("event", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -20,7 +20,9 @@ export const eventRelations = relations(eventTable, ({ one }) => ({
   user: one(userTable, { fields: [eventTable.userId], references: [userTable.id] }),
 }))
 
-export type Event = InferSelectModel<typeof eventTable>
+export type Event = InferSelectModel<typeof eventTable> & {
+  user?: User | null
+}
 
 export const eventParticipantTable = schema.table(
   "event_participant",
