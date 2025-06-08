@@ -24,10 +24,10 @@ export const userRoleTable = schema.table(
   {
     userId: uuid("user_id")
       .notNull()
-      .references(() => userTable.id),
+      .references(() => userTable.id, { onDelete: "cascade" }),
     roleId: uuid("role_id")
       .notNull()
-      .references(() => roleTable.id),
+      .references(() => roleTable.id, { onDelete: "cascade" }),
 
     ...createdAtUpdatedAt,
   },

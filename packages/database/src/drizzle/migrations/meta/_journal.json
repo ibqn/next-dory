@@ -36,6 +36,13 @@
       "when": 1749381293135,
       "tag": "0004_white_tattoo",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1749381443091,
+      "tag": "0005_silly_white_queen",
+      "breakpoints": true
     }
   ]
 }
