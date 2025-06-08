@@ -31,18 +31,12 @@ export const userRoleTable = schema.table(
 
     ...createdAtUpdatedAt,
   },
-  (t) => [primaryKey({ columns: [t.userId, t.roleId] })]
+  (table) => [primaryKey({ columns: [table.userId, table.roleId] })]
 )
 
 export const userRoleRelations = relations(userRoleTable, ({ one }) => ({
-  user: one(userTable, {
-    fields: [userRoleTable.userId],
-    references: [userTable.id],
-  }),
-  role: one(roleTable, {
-    fields: [userRoleTable.roleId],
-    references: [roleTable.id],
-  }),
+  user: one(userTable, { fields: [userRoleTable.userId], references: [userTable.id] }),
+  role: one(roleTable, { fields: [userRoleTable.roleId], references: [roleTable.id] }),
 }))
 
 export type UserRole = InferSelectModel<typeof userRoleTable> & {
@@ -74,16 +68,10 @@ export const rolePermissionTable = schema.table(
 
     ...createdAtUpdatedAt,
   },
-  (t) => [primaryKey({ columns: [t.roleId, t.permissionId] })]
+  (table) => [primaryKey({ columns: [table.roleId, table.permissionId] })]
 )
 
 export const rolePermissionRelations = relations(rolePermissionTable, ({ one }) => ({
-  role: one(roleTable, {
-    fields: [rolePermissionTable.roleId],
-    references: [roleTable.id],
-  }),
-  permission: one(permissionTable, {
-    fields: [rolePermissionTable.permissionId],
-    references: [permissionTable.id],
-  }),
+  role: one(roleTable, { fields: [rolePermissionTable.roleId], references: [roleTable.id] }),
+  permission: one(permissionTable, { fields: [rolePermissionTable.permissionId], references: [permissionTable.id] }),
 }))

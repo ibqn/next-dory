@@ -25,10 +25,7 @@ export const sessionTable = schema.table("session", {
   userId: uuid("user_id")
     .notNull()
     .references(() => userTable.id, { onDelete: "cascade" }),
-  expiresAt: timestamp("expires_at", {
-    withTimezone: true,
-  }).notNull(),
-
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   ...createdAtUpdatedAt,
 })
 
