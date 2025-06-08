@@ -10,7 +10,7 @@ const EnvSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
 })
 
-export type env = z.infer<typeof EnvSchema>
+export type Env = z.infer<typeof EnvSchema>
 
 const result = EnvSchema.safeParse(process.env)
 
