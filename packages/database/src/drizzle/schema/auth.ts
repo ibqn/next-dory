@@ -16,7 +16,7 @@ export const userTable = schema.table("user", {
   ...createdAtUpdatedAt,
 })
 
-export const userRelations = relations(userTable, ({ one, many }) => ({
+export const userRelations = relations(userTable, ({ many }) => ({
   userRoles: many(userRoleTable),
 }))
 
