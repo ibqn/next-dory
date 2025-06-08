@@ -12,6 +12,7 @@ import {
   userRoleTable,
 } from "./schema/role"
 import { processEnv } from "../env"
+import { eventParticipantRelations, eventParticipantTable, eventRelations, eventTable } from "./schema/event"
 
 export const db = drizzle(processEnv.DATABASE_URL, {
   logger: true,
@@ -31,5 +32,9 @@ export const db = drizzle(processEnv.DATABASE_URL, {
     permissionRelations,
     rolePermission: rolePermissionTable,
     rolePermissionRelations,
+    event: eventTable,
+    eventRelations,
+    eventParticipant: eventParticipantTable,
+    eventParticipantRelations,
   },
 })
