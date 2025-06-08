@@ -11,10 +11,10 @@ import {
   userRoleRelations,
   userRoleTable,
 } from "./schema/role"
-import { processEnv } from "../env"
+import { env } from "../env"
 import { eventParticipantRelations, eventParticipantTable, eventRelations, eventTable } from "./schema/event"
 
-export const db = drizzle(processEnv.DATABASE_URL, {
+export const db = drizzle(env.DATABASE_URL, {
   logger: true,
   schema: {
     user: userTable,
