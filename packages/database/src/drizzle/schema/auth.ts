@@ -68,6 +68,6 @@ export const accountTable = schema.table(
     ...createdAtUpdatedAt,
   },
   (table) => {
-    return [primaryKey({ name: "pk", columns: [table.provider, table.providerAccountId] })]
+    return [primaryKey({ columns: [table.provider, table.providerAccountId] })]
   }
 )

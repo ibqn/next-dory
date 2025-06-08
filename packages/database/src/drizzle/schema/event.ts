@@ -35,7 +35,7 @@ export const eventParticipantTable = schema.table(
     ...createdAtUpdatedAt,
   },
   (table) => {
-    return [primaryKey({ name: "pk", columns: [table.eventId, table.userId] })]
+    return [primaryKey({ columns: [table.eventId, table.userId] })]
   }
 )
 
