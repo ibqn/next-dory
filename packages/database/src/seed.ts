@@ -16,11 +16,6 @@ async function seed() {
     Permission.roleView,
     Permission.roleUpdate,
     Permission.roleDelete,
-
-    Permission.organizationCreate,
-    Permission.organizationView,
-    Permission.organizationUpdate,
-    Permission.organizationDelete,
   ]
 
   const roles = ["admin", "user"]

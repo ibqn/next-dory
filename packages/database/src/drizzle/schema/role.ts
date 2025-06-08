@@ -61,10 +61,10 @@ export const rolePermissionTable = schema.table(
   {
     roleId: uuid("role_id")
       .notNull()
-      .references(() => roleTable.id),
+      .references(() => roleTable.id, { onDelete: "cascade" }),
     permissionId: uuid("permission_id")
       .notNull()
-      .references(() => permissionTable.id),
+      .references(() => permissionTable.id, { onDelete: "cascade" }),
 
     ...createdAtUpdatedAt,
   },
