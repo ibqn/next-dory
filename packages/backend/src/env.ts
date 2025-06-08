@@ -1,6 +1,6 @@
 import { z } from "zod/v4"
 
-const EnvSchema = z.object({
+const envSchema = z.object({
   PORT: z.coerce.number().default(3333),
   LOG_LEVEL: z.enum(["fatal", "error", "warn", "info", "debug", "trace", "silent"]),
   DATABASE_URL: z.url(),
@@ -10,9 +10,9 @@ const EnvSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1),
 })
 
-export type Env = z.infer<typeof EnvSchema>
+export type Env = z.infer<typeof envSchema>
 
-const result = EnvSchema.safeParse(process.env)
+const result = envSchema.safeParse(process.env)
 
 if (result.error) {
   console.error("❌ Invalid env:")
