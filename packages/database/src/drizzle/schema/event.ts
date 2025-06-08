@@ -3,6 +3,8 @@ import { schema } from "./schema"
 import { relations, type InferSelectModel } from "drizzle-orm"
 import { createdAtUpdatedAt } from "./utils"
 import { userTable, type User } from "./auth"
+import { pollTable, type Poll } from "./poll"
+import { questionTable, type Question } from "./question"
 
 export const eventTable = schema.table("event", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -16,12 +18,18 @@ export const eventTable = schema.table("event", {
   ...createdAtUpdatedAt,
 })
 
-export const eventRelations = relations(eventTable, ({ one }) => ({
+export const eventRelations = relations(eventTable, ({ one, many }) => ({
   user: one(userTable, { fields: [eventTable.userId], references: [userTable.id] }),
+  participants: many(eventParticipantTable),
+  polls: many(pollTable),
+  questions: many(questionTable),
 }))
 
 export type Event = InferSelectModel<typeof eventTable> & {
   user?: User | null
+  participants?: EventParticipant[] | null
+  polls?: Poll[] | null
+  questions?: Question[] | null
 }
 
 export const eventParticipantTable = schema.table(
@@ -40,6 +48,8 @@ export const eventParticipantTable = schema.table(
     return [primaryKey({ columns: [table.eventId, table.userId] })]
   }
 )
+
+type EventParticipant = InferSelectModel<typeof eventParticipantTable>
 
 export const eventParticipantRelations = relations(eventParticipantTable, ({ one }) => ({
   event: one(eventTable, { fields: [eventParticipantTable.eventId], references: [eventTable.id] }),

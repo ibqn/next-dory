@@ -2,7 +2,7 @@ import { boolean, text, uuid } from "drizzle-orm/pg-core"
 import { schema } from "./schema"
 import { createdAtUpdatedAt } from "./utils"
 import { eventTable } from "./event"
-import { relations } from "drizzle-orm"
+import { relations, type InferSelectModel } from "drizzle-orm"
 import { userTable } from "./auth"
 import { questionUpvoteTable } from "./upvote"
 
@@ -22,6 +22,8 @@ export const questionTable = schema.table("question", {
 
   ...createdAtUpdatedAt,
 })
+
+export type Question = InferSelectModel<typeof questionTable>
 
 export const questionRelations = relations(questionTable, ({ one, many }) => ({
   event: one(eventTable, { fields: [questionTable.eventId], references: [eventTable.id] }),
