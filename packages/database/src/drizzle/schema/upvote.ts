@@ -21,5 +21,5 @@ export const questionUpvoteTable = schema.table("question_upvote", {
 
 export const questionUpvoteRelations = relations(questionUpvoteTable, ({ one }) => ({
   question: one(questionTable, { fields: [questionUpvoteTable.questionId], references: [questionTable.id] }),
-  user: one(questionTable, { fields: [questionUpvoteTable.userId], references: [questionTable.userId] }),
+  user: one(userTable, { fields: [questionUpvoteTable.userId], references: [userTable.id] }),
 }))
