@@ -44,9 +44,7 @@ export const passwordResetTable = schema.table("password_reset", {
   userId: uuid("user_id")
     .notNull()
     .references(() => userTable.id, { onDelete: "cascade" }),
-  expiresAt: timestamp("expires_at", {
-    withTimezone: true,
-  }).notNull(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   token: text("token").notNull().unique(),
   used: timestamp("used", { withTimezone: true }),
 

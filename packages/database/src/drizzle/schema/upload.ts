@@ -18,10 +18,7 @@ export const uploadTable = schema.table("upload", {
 })
 
 export const uploadRelations = relations(uploadTable, ({ one }) => ({
-  user: one(userTable, {
-    fields: [uploadTable.userId],
-    references: [userTable.id],
-  }),
+  user: one(userTable, { fields: [uploadTable.userId], references: [userTable.id] }),
 }))
 
 export type Upload = InferSelectModel<typeof uploadTable> & {
