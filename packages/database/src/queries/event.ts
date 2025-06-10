@@ -51,6 +51,11 @@ export const getEventItems = async ({ page, limit, sortedBy, order }: GetEventIt
     offset,
     limit,
     orderBy: [orderBy, asc(eventTable.id)],
+    with: {
+      polls: true,
+      questions: true,
+      participants: true,
+    },
   })
 
   return eventItems satisfies Event[] as Event[]

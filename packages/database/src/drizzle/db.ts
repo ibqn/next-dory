@@ -13,6 +13,8 @@ import {
 } from "./schema/role"
 import { env } from "../env"
 import { eventParticipantRelations, eventParticipantTable, eventRelations, eventTable } from "./schema/event"
+import { pollRelations, pollTable } from "./schema/poll"
+import { questionRelations, questionTable } from "./schema/question"
 
 export const db = drizzle(env.DATABASE_URL, {
   logger: true,
@@ -36,5 +38,9 @@ export const db = drizzle(env.DATABASE_URL, {
     eventRelations,
     eventParticipant: eventParticipantTable,
     eventParticipantRelations,
+    poll: pollTable,
+    pollRelations,
+    question: questionTable,
+    questionRelations,
   },
 })
