@@ -38,3 +38,20 @@ export const eventListQueryOptions = (paramsInput: Partial<PaginationSchema> = {
     placeholderData: keepPreviousData,
   })
 }
+
+export const getBookmarkedEventItems = async (params?: PaginationSchema) => {
+  const { data: response } = await axios.get<PaginatedSuccessResponse<Event[]>>("/event/bookmarked", { params })
+  const { data: eventItems, pagination } = response
+  return { eventItems, pagination }
+}
+export type GetBookmarkedEventItems = Awaited<ReturnType<typeof getBookmarkedEventItems>>
+
+export const bookmarkedEventListQueryOptions = (paramsInput: Partial<PaginationSchema> = {}) => {
+  const params = paginationSchema.parse(paramsInput)
+
+  return queryOptions({
+    queryKey: ["bookmarked-event-list", params] as const,
+    queryFn: () => getBookmarkedEventItems(params),
+    placeholderData: keepPreviousData,
+  })
+}
