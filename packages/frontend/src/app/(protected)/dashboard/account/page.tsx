@@ -1,3 +1,10 @@
+import { Account } from "@/components/account"
+import { Suspense } from "react"
+
 export default function AccountPage() {
-  return <div>account</div>
+  return (
+    <Suspense>
+      <Account />
+    </Suspense>
+  )
 }
