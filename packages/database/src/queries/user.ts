@@ -50,6 +50,8 @@ export const getUserItem = async ({ userId }: GetUserItemOptions) => {
     return null
   }
 
+  unset(user, "passwordHash")
+
   return user satisfies User as User
 }
 
