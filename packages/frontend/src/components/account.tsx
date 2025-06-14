@@ -1,12 +1,14 @@
 "use client"
 
 import { userQueryOptions } from "@/api/auth"
+import { userInfoQueryOptions } from "@/api/user"
 import { UserAvatar } from "@/components/user-avatar"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { format } from "date-fns"
 
 export const Account = () => {
   const { data: user } = useSuspenseQuery(userQueryOptions())
+  const { data: userInfo } = useSuspenseQuery(userInfoQueryOptions())
 
   return (
     user && (
@@ -19,12 +21,14 @@ export const Account = () => {
           Member since {format(user.createdAt, "dd MMMM yyyy")}
         </time>
 
-        {/* <ul className="text-muted-foreground mt-6 space-y-1 text-sm">
-          <li>Events: {user._count.events}</li>
-          <li>Questions Asked: {user._count.questions}</li>
-          <li>Participating: {user._count.participations}</li>
-          <li>Bookmarked Events: {user._count.bookmarks}</li>
-        </ul> */}
+        {userInfo && (
+          <ul className="text-muted-foreground mt-6 space-y-1 text-sm">
+            <li>Events: {userInfo.eventsCount}</li>
+            <li>Questions Asked: {userInfo.questionsCount}</li>
+            <li>Participating: {userInfo.participationsCount}</li>
+            <li>Bookmarked Events: {userInfo.bookmarksCount}</li>
+          </ul>
+        )}
       </div>
     )
   )
