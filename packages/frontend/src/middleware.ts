@@ -19,9 +19,7 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
   // NOTE: You may need to use `X-Forwarded-Host` instead
   const hostHeader = request.headers.get("Host")
   if (originHeader === null || hostHeader === null) {
-    return new NextResponse(null, {
-      status: 403,
-    })
+    return new NextResponse(null, { status: 403 })
   }
   let origin: URL
   try {
