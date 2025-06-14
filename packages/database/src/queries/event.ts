@@ -1,11 +1,27 @@
-import { eventTable, type Event } from "../drizzle/schema/event"
+import { eventBookmarkTable, eventTable, type Event } from "../drizzle/schema/event"
 import { db } from "../drizzle/db"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
 import type { User } from "src/drizzle/schema/auth"
-import { asc, countDistinct, desc } from "drizzle-orm"
+import { asc, countDistinct, desc, eq, sql } from "drizzle-orm"
+import { tr } from "date-fns/locale"
 
 export const getEventItemsCount = async () => {
   const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
+
+  return count
+}
+
+type GetBookmarkedEventItemsCountOptions = {
+  userId: User["id"]
+}
+
+export const getBookmarkedEventItemsCount = async ({ userId }: GetBookmarkedEventItemsCountOptions) => {
+  const [{ count }] = await db
+    .select({
+      count: sql`COUNT(DISTINCT(${eventBookmarkTable.userId}, ${eventBookmarkTable.eventId}))`.mapWith(Number),
+    })
+    .from(eventBookmarkTable)
+    .where(eq(eventBookmarkTable.userId, userId))
 
   return count
 }
@@ -59,4 +75,31 @@ export const getEventItems = async ({ page, limit, sortedBy, order }: GetEventIt
   })
 
   return eventItems satisfies Event[] as Event[]
+}
+
+type GetBookmarkedEventItemsOptions = PaginationSchema & { userId: User["id"] }
+
+export const getBookmarkedEventItems = async ({
+  userId,
+  page,
+  limit,
+  sortedBy,
+  order,
+}: GetBookmarkedEventItemsOptions) => {
+  const offset = (page - 1) * limit
+
+  const sortedByColumn = getSortedByColumn(sortedBy)
+  const orderBy = order === "desc" ? desc(sortedByColumn) : asc(sortedByColumn)
+
+  const eventBookmarkItems = await db.query.eventBookmark.findMany({
+    where: eq(eventBookmarkTable.userId, userId),
+    offset,
+    limit,
+    orderBy: [orderBy, asc(eventBookmarkTable.eventId)],
+    with: { event: true },
+  })
+
+  const bookmarkedEventItems = eventBookmarkItems.map(({ event }) => event)
+
+  return bookmarkedEventItems satisfies Event[] as Event[]
 }
