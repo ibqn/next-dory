@@ -43,6 +43,13 @@
       "when": 1749381443091,
       "tag": "0005_silly_white_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1749903020105,
+      "tag": "0006_rich_dagger",
+      "breakpoints": true
     }
   ]
 }

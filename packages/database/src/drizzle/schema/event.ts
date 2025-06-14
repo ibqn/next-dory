@@ -23,6 +23,7 @@ export const eventRelations = relations(eventTable, ({ one, many }) => ({
   participants: many(eventParticipantTable),
   polls: many(pollTable),
   questions: many(questionTable),
+  bookmarkedBy: many(eventBookmarkTable),
 }))
 
 export type Event = InferSelectModel<typeof eventTable> & {
@@ -49,9 +50,33 @@ export const eventParticipantTable = schema.table(
   }
 )
 
-type EventParticipant = InferSelectModel<typeof eventParticipantTable>
+export type EventParticipant = InferSelectModel<typeof eventParticipantTable>
 
 export const eventParticipantRelations = relations(eventParticipantTable, ({ one }) => ({
   event: one(eventTable, { fields: [eventParticipantTable.eventId], references: [eventTable.id] }),
   user: one(userTable, { fields: [eventParticipantTable.userId], references: [userTable.id] }),
+}))
+
+export const eventBookmarkTable = schema.table(
+  "event_bookmark",
+  {
+    eventId: uuid("event_id")
+      .notNull()
+      .references(() => eventTable.id, { onDelete: "cascade" }),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => userTable.id, { onDelete: "cascade" }),
+
+    ...createdAtUpdatedAt,
+  },
+  (table) => {
+    return [primaryKey({ columns: [table.eventId, table.userId] })]
+  }
+)
+
+export type EventBookmark = InferSelectModel<typeof eventParticipantTable>
+
+export const eventBookmarkRelations = relations(eventBookmarkTable, ({ one }) => ({
+  event: one(eventTable, { fields: [eventBookmarkTable.eventId], references: [eventTable.id] }),
+  user: one(userTable, { fields: [eventBookmarkTable.userId], references: [userTable.id] }),
 }))

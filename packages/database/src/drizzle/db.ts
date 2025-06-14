@@ -12,7 +12,14 @@ import {
   userRoleTable,
 } from "./schema/role"
 import { env } from "../env"
-import { eventParticipantRelations, eventParticipantTable, eventRelations, eventTable } from "./schema/event"
+import {
+  eventBookmarkRelations,
+  eventBookmarkTable,
+  eventParticipantRelations,
+  eventParticipantTable,
+  eventRelations,
+  eventTable,
+} from "./schema/event"
 import { pollRelations, pollTable } from "./schema/poll"
 import { questionRelations, questionTable } from "./schema/question"
 
@@ -42,5 +49,7 @@ export const db = drizzle(env.DATABASE_URL, {
     pollRelations,
     question: questionTable,
     questionRelations,
+    eventBookmark: eventBookmarkTable,
+    eventBookmarkRelations,
   },
 })
