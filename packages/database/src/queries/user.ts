@@ -87,38 +87,3 @@ export const getUserItems = async ({ page, limit, sortedBy, order }: GetUserItem
 
   return userItems
 }
-
-type GetUserInfoOptions = {
-  userId: User["id"]
-}
-
-export type UserInfo = {
-  bookmarksCount: number
-  participationsCount: number
-  questionsCount: number
-  eventsCount: number
-}
-
-export const getUserInfo = async ({ userId }: GetUserInfoOptions): Promise<UserInfo | null> => {
-  const [userInfo] = await db
-    .select({
-      bookmarksCount: countDistinct(eventBookmarkTable.eventId),
-      participationsCount: countDistinct(eventParticipantTable.eventId),
-      questionsCount: countDistinct(questionTable.id),
-      eventsCount: countDistinct(eventTable.id),
-    })
-    .from(userTable)
-    .where(eq(userTable.id, userId))
-    .leftJoin(eventBookmarkTable, eq(eventBookmarkTable.userId, userTable.id))
-    .leftJoin(eventParticipantTable, eq(eventParticipantTable.userId, userTable.id))
-    .leftJoin(questionTable, eq(questionTable.userId, userTable.id))
-    .leftJoin(eventTable, eq(eventTable.userId, userTable.id))
-
-  console.log("userInfo", userInfo)
-
-  if (!userInfo) {
-    return null
-  }
-
-  return userInfo satisfies UserInfo
-}

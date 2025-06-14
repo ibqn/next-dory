@@ -10,8 +10,6 @@ import {
   createUserItem,
   updateUserItem,
   deleteUserItem,
-  getUserInfo,
-  type UserInfo,
 } from "database/src/queries/user"
 import type { User } from "database/src/drizzle/schema/auth"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
@@ -70,17 +68,6 @@ userRoute
       message: "User items retrieved",
       pagination: { page, totalPages: Math.ceil(userCount / limit), totalItems: userCount },
     })
-  })
-  .get("/info", signedIn, async (c) => {
-    const user = c.get("user") as User
-
-    const userInfo = await getUserInfo({ userId: user.id })
-
-    if (!userInfo) {
-      return c.json<ErrorResponse>({ success: false, error: "User info not found" }, 404)
-    }
-
-    return c.json<SuccessResponse<UserInfo>>({ success: true, data: userInfo, message: "User info retrieved" })
   })
   .delete("/:uuid", signedIn, zValidator("param", paramUuidSchema), async (c) => {
     const { uuid } = c.req.valid("param")
