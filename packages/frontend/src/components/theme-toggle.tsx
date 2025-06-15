@@ -22,7 +22,7 @@ const Radio = ({ className, ...props }: RadioProps) => {
         "left-0.75 transition data-[theme=dark]:translate-x-21 data-[theme=light]:translate-x-10.5 data-[theme=system]:translate-x-0 data-[theme=dark]:sm:translate-x-15 data-[theme=light]:sm:translate-x-7.5",
         className
       )}
-      data-theme={theme}
+      data-theme={theme ?? "system"}
     ></div>
   )
 }
