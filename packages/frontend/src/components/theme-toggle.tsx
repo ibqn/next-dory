@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/class-names"
 import { useTheme } from "next-themes"
-import { type ComponentProps } from "react"
+import { useEffect, useState, type ComponentProps } from "react"
 
 type RadioGroupProps = ComponentProps<"div">
 
@@ -13,7 +13,17 @@ const RadioGroup = ({ className, ...props }: RadioGroupProps) => {
 type RadioProps = ComponentProps<"div">
 
 const Radio = ({ className, ...props }: RadioProps) => {
+  const [mounted, setMounted] = useState(false)
   const { theme } = useTheme()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div
       {...props}
@@ -22,7 +32,7 @@ const Radio = ({ className, ...props }: RadioProps) => {
         "left-0.75 transition data-[theme=dark]:translate-x-21 data-[theme=light]:translate-x-10.5 data-[theme=system]:translate-x-0 data-[theme=dark]:sm:translate-x-15 data-[theme=light]:sm:translate-x-7.5",
         className
       )}
-      data-theme={theme ?? "system"}
+      data-theme={theme}
     ></div>
   )
 }
