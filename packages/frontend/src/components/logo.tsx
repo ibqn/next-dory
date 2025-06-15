@@ -1,3 +1,3 @@
 import { Flame } from "lucide-react"
 
-export const Logo = () => <Flame color="white" size={28} />
+export const Logo = () => <Flame size={28} />
