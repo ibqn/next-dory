@@ -12,7 +12,7 @@ export const Item = ({ item, isActive }: Props) => {
     <div
       role="items"
       className={cn(
-        "flex flex-row items-center gap-x-2 rounded-lg p-4 text-sm text-gray-500 transition-colors duration-150 select-none",
+        "flex flex-row items-center gap-x-2 rounded-lg p-4 text-sm text-gray-500 transition-colors duration-150 select-none dark:text-white/60",
         isActive ? "bg-primary/10 text-primary font-semibold" : "hover:bg-primary/10"
       )}
     >
