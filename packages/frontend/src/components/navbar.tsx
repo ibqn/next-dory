@@ -4,6 +4,7 @@ import { Logo } from "@/components/logo"
 import { Suspense } from "react"
 import { AuthLoader } from "./auth-loader"
 import { AuthButtons } from "./buttons/auth-buttons"
+import { ThemeToggle } from "./theme-toggle"
 
 export const Navbar = () => {
   return (
@@ -13,7 +14,8 @@ export const Navbar = () => {
         <span className="text-base font-bold tracking-wide">Pulse</span>
       </Link>
 
-      <nav className="ml-auto">
+      <nav className="ml-auto inline-flex items-center gap-4">
+        <ThemeToggle />
         <Suspense fallback={<AuthLoader />}>
           <AuthButtons />
         </Suspense>
