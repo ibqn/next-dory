@@ -8,7 +8,7 @@
     "@hono/node-server": "^1.14.4",
     "@hono/zod-validator": "^0.7.0",
     "arctic": "^3.7.0",
-    "axios": "^1.9.0",
+    "axios": "^1.10.0",
     "database": "workspace:*",
     "hono": "^4.7.11",
     "hono-pino": "^0.8.0",
