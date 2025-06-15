@@ -1,5 +1,4 @@
 import { MessageCircleMore, Radio } from "lucide-react"
-import { title } from "process"
 
 const valuePropositions = [
   {
