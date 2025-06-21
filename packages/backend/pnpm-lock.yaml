@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: ^1.14.4
-        version: 1.14.4(hono@4.7.11)
+        version: 1.14.4(hono@4.8.0)
       '@hono/zod-validator':
         specifier: ^0.7.0
-        version: 0.7.0(hono@4.7.11)(zod@3.25.64)
+        version: 0.7.0(hono@4.8.0)(zod@3.25.67)
       arctic:
         specifier: ^3.7.0
         version: 3.7.0
@@ -24,11 +24,11 @@ importers:
         specifier: workspace:*
         version: link:../database
       hono:
-        specifier: ^4.7.11
-        version: 4.7.11
+        specifier: ^4.8.0
+        version: 4.8.0
       hono-pino:
         specifier: ^0.8.0
-        version: 0.8.0(hono@4.7.11)(pino@9.7.0)
+        version: 0.8.0(hono@4.8.0)(pino@9.7.0)
       pino:
         specifier: ^9.7.0
         version: 9.7.0
@@ -36,12 +36,12 @@ importers:
         specifier: ^13.0.0
         version: 13.0.0
       zod:
-        specifier: ^3.25.64
-        version: 3.25.64
+        specifier: ^3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/node':
-        specifier: ^24.0.1
-        version: 24.0.1
+        specifier: ^24.0.3
+        version: 24.0.3
       tsx:
         specifier: ^4.20.3
         version: 4.20.3
@@ -228,8 +228,8 @@ packages:
   '@oslojs/jwt@0.2.0':
     resolution: {integrity: sha512-bLE7BtHrURedCn4Mco3ma9L4Y1GR2SMBuIvjWr7rmQ4/W/4Jy70TIAgZ+0nIlk0xHz1vNP8x8DCns45Sb2XRbg==}
 
-  '@types/node@24.0.1':
-    resolution: {integrity: sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==}
+  '@types/node@24.0.3':
+    resolution: {integrity: sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg==}
 
   arctic@3.7.0:
     resolution: {integrity: sha512-ZMQ+f6VazDgUJOd+qNV+H7GohNSYal1mVjm5kEaZfE2Ifb7Ss70w+Q7xpJC87qZDkMZIXYf0pTIYZA0OPasSbw==}
@@ -361,8 +361,8 @@ packages:
       hono: '>=4.0.0'
       pino: '>=7.1.0'
 
-  hono@4.7.11:
-    resolution: {integrity: sha512-rv0JMwC0KALbbmwJDEnxvQCeJh+xbS3KEWW5PC9cMJ08Ur9xgatI0HmtgYZfOdOSOeYsp5LO2cOhdI8cLEbDEQ==}
+  hono@4.8.0:
+    resolution: {integrity: sha512-NoiHrqJxoe1MYXqW+/0/Q4NCizKj2Ivm4KmX8mOSBtw9UJ7KYaOGKkO7csIwO5UlZpfvVRdcgiMb0GGyjEjtcw==}
     engines: {node: '>=16.9.0'}
 
   joycon@3.1.1:
@@ -456,8 +456,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  zod@3.25.64:
-    resolution: {integrity: sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==}
+  zod@3.25.67:
+    resolution: {integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==}
 
 snapshots:
 
@@ -536,14 +536,14 @@ snapshots:
   '@esbuild/win32-x64@0.25.5':
     optional: true
 
-  '@hono/node-server@1.14.4(hono@4.7.11)':
+  '@hono/node-server@1.14.4(hono@4.8.0)':
     dependencies:
-      hono: 4.7.11
+      hono: 4.8.0
 
-  '@hono/zod-validator@0.7.0(hono@4.7.11)(zod@3.25.64)':
+  '@hono/zod-validator@0.7.0(hono@4.8.0)(zod@3.25.67)':
     dependencies:
-      hono: 4.7.11
-      zod: 3.25.64
+      hono: 4.8.0
+      zod: 3.25.67
 
   '@oslojs/asn1@1.0.0':
     dependencies:
@@ -564,7 +564,7 @@ snapshots:
     dependencies:
       '@oslojs/encoding': 0.4.1
 
-  '@types/node@24.0.1':
+  '@types/node@24.0.3':
     dependencies:
       undici-types: 7.8.0
 
@@ -713,13 +713,13 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono-pino@0.8.0(hono@4.7.11)(pino@9.7.0):
+  hono-pino@0.8.0(hono@4.8.0)(pino@9.7.0):
     dependencies:
       defu: 6.1.4
-      hono: 4.7.11
+      hono: 4.8.0
       pino: 9.7.0
 
-  hono@4.7.11: {}
+  hono@4.8.0: {}
 
   joycon@3.1.1: {}
 
@@ -817,4 +817,4 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  zod@3.25.64: {}
+  zod@3.25.67: {}

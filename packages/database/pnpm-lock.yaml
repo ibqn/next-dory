@@ -25,7 +25,7 @@ importers:
         version: 0.44.2(gel@2.0.1)(postgres@3.4.7)
       drizzle-zod:
         specifier: ~0.8.2
-        version: 0.8.2(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.64)
+        version: 0.8.2(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.67)
       lodash.unset:
         specifier: ^4.5.2
         version: 4.5.2
@@ -33,15 +33,15 @@ importers:
         specifier: ^3.4.7
         version: 3.4.7
       zod:
-        specifier: ^3.25.64
-        version: 3.25.64
+        specifier: ^3.25.67
+        version: 3.25.67
     devDependencies:
       '@types/lodash.unset':
         specifier: ^4.5.9
         version: 4.5.9
       '@types/node':
-        specifier: ^24.0.1
-        version: 24.0.1
+        specifier: ^24.0.3
+        version: 24.0.3
       drizzle-kit:
         specifier: ^0.31.1
         version: 0.31.1
@@ -522,8 +522,8 @@ packages:
   '@types/lodash@4.17.15':
     resolution: {integrity: sha512-w/P33JFeySuhN6JLkysYUK2gEmy9kHHFN7E8ro0tkfmlDOgxBDzWEZ/J8cWA+fHqFevpswDTFZnDx+R9lbL6xw==}
 
-  '@types/node@24.0.1':
-    resolution: {integrity: sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==}
+  '@types/node@24.0.3':
+    resolution: {integrity: sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg==}
 
   argon2@0.43.0:
     resolution: {integrity: sha512-u/HKLcbWShVDhkfwI4hWyiUf3qyX8QhTfaIv2cWE18uqhXCmR5hb6Ed7oqYi2KCQegeAnRhiFzbjzm7i5yl1GA==}
@@ -754,8 +754,8 @@ packages:
     engines: {node: ^16.13.0 || >=18.0.0}
     hasBin: true
 
-  zod@3.25.64:
-    resolution: {integrity: sha512-hbP9FpSZf7pkS7hRVUrOjhwKJNyampPgtXKc3AN6DsWtoHsg2Sb4SQaS4Tcay380zSwd2VPo9G9180emBACp5g==}
+  zod@3.25.67:
+    resolution: {integrity: sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==}
 
 snapshots:
 
@@ -1011,7 +1011,7 @@ snapshots:
 
   '@types/lodash@4.17.15': {}
 
-  '@types/node@24.0.1':
+  '@types/node@24.0.3':
     dependencies:
       undici-types: 7.8.0
 
@@ -1048,10 +1048,10 @@ snapshots:
       gel: 2.0.1
       postgres: 3.4.7
 
-  drizzle-zod@0.8.2(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.64):
+  drizzle-zod@0.8.2(drizzle-orm@0.44.2(gel@2.0.1)(postgres@3.4.7))(zod@3.25.67):
     dependencies:
       drizzle-orm: 0.44.2(gel@2.0.1)(postgres@3.4.7)
-      zod: 3.25.64
+      zod: 3.25.67
 
   env-paths@3.0.0:
     optional: true
@@ -1211,4 +1211,4 @@ snapshots:
       isexe: 3.1.1
     optional: true
 
-  zod@3.25.64: {}
+  zod@3.25.67: {}
