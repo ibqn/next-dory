@@ -1,3 +1,3 @@
-import { Flame } from "lucide-react"
+import { ActivityIcon } from "lucide-react"
 
-export const Logo = () => <Flame size={28} />
+export const Logo = () => <ActivityIcon size={26} />
