@@ -3,7 +3,6 @@ import { db } from "../drizzle/db"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
 import type { User } from "src/drizzle/schema/auth"
 import { asc, countDistinct, desc, eq, sql } from "drizzle-orm"
-import { tr } from "date-fns/locale"
 
 export const getEventItemsCount = async () => {
   const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
