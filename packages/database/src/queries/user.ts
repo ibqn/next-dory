@@ -5,8 +5,6 @@ import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
 import unset from "lodash.unset"
 import type { CreateUserSchema, UpdateUserSchema } from "../validators/user"
 import type { ParamUuidSchema } from "../validators/param"
-import { eventBookmarkTable, eventParticipantTable, eventTable } from "../drizzle/schema/event"
-import { questionTable } from "../drizzle/schema/question"
 
 export const createUserItem = async (input: CreateUserSchema) => {
   await db.insert(userTable).values(input).onConflictDoNothing()
