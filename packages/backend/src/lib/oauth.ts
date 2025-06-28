@@ -10,5 +10,5 @@ export const github = new GitHub(
 export const google = new Google(
   env.GOOGLE_CLIENT_ID,
   env.GOOGLE_CLIENT_SECRET,
-  "http://localhost:4000/auth/sign-in/google/callback"
+  "http://localhost:3333/auth/sign-in/google/callback"
 )
