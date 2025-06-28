@@ -8,7 +8,7 @@ import Link from "next/link"
 import { UserAvatar } from "@/components/user-avatar"
 import { /* use, */ type ComponentProps } from "react"
 import { cn } from "@/lib/class-names"
-import { buttonVariants } from "../ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 type Props = ComponentProps<"div">
 
