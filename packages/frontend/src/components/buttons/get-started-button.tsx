@@ -10,7 +10,7 @@ import { Route } from "@/routes"
 
 export const GetStartedButton = () => {
   const { data: user } = useQuery(userQueryOptions())
-  const [href, setHref] = useState<Route>(Route.signIn)
+  const [href, setHref] = useState<string>(Route.signIn)
 
   useEffect(() => {
     if (user) {
