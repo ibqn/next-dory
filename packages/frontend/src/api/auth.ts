@@ -34,11 +34,16 @@ export const getUser = async () => {
 export const userQueryOptions = () => queryOptions({ queryKey: ["user"] as const, queryFn: getUser })
 
 export const validate = async (): Promise<SessionValidationResult> => {
-  const { data: response } = await axios.get<ApiResponse<SessionValidationResult>>("/auth/validate")
-  if (!response.success) {
+  try {
+    const { data: response } = await axios.get<ApiResponse<SessionValidationResult>>("/auth/validate")
+    if (!response.success) {
+      return { user: null, session: null }
+    }
+    return response.data
+  } catch (error) {
+    console.error("Error validating session:", error)
     return { user: null, session: null }
   }
-  return response.data
 }
 
 export const validateQueryOptions = () =>
