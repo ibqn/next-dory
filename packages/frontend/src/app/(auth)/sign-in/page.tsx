@@ -21,9 +21,11 @@ export default function SignInPage() {
                   Login with GitHub
                 </a>
               </Button>
-              <Button variant="outline" className="w-full">
-                <GoogleIcon />
-                Login with Google
+              <Button asChild variant="outline" className="w-full">
+                <a href={`${env.API_URL}/auth/sign-in/google`}>
+                  <GoogleIcon />
+                  Login with Google
+                </a>
               </Button>
             </div>
           </div>
