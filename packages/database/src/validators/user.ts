@@ -1,4 +1,4 @@
-import { z } from "zod/v4"
+import { z } from "zod"
 import { paginationSchema } from "./pagination"
 import { createInsertSchema } from "drizzle-zod"
 import { userTable } from "../drizzle/schema/auth"

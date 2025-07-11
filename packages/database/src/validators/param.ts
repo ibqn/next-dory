@@ -1,4 +1,4 @@
-import { z } from "zod/v4"
+import { z } from "zod"
 
 export const paramSlugSchema = z.object({
   slug: z.string().min(3).max(32),

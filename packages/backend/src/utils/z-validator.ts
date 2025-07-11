@@ -1,5 +1,5 @@
 import type { ValidationTargets } from "hono"
-import type { ZodType } from "zod/v4"
+import type { ZodType } from "zod"
 import { zValidator as zv } from "@hono/zod-validator"
 import { HTTPException } from "hono/http-exception"
 

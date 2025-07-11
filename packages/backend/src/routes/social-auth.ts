@@ -9,7 +9,7 @@ import { createAccount } from "database/src/queries/account"
 import { createUserItem } from "database/src/queries/user"
 import { env } from "../env"
 import axios from "axios"
-import { z } from "zod/v4"
+import { z } from "zod"
 import { Provider } from "database/src/types"
 
 const socialAuthRoute = new Hono<Context>()
