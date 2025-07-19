@@ -10,20 +10,20 @@ type GetAccountInfoOptions = {
 }
 
 export type AccountInfo = {
-  bookmarksCount: number
-  participationsCount: number
-  questionsCount: number
-  eventsCount: number
+  bookmarkCount: number
+  participationCount: number
+  questionCount: number
+  eventCount: number
   user: User
 }
 
 export const getAccountInfo = async ({ userId }: GetAccountInfoOptions): Promise<AccountInfo | null> => {
   const [accountInfo] = await db
     .select({
-      bookmarksCount: countDistinct(eventBookmarkTable.eventId),
-      participationsCount: countDistinct(eventParticipantTable.eventId),
-      questionsCount: countDistinct(questionTable.id),
-      eventsCount: countDistinct(eventTable.id),
+      bookmarkCount: countDistinct(eventBookmarkTable.eventId),
+      participationCount: countDistinct(eventParticipantTable.eventId),
+      questionCount: countDistinct(questionTable.id),
+      eventCount: countDistinct(eventTable.id),
     })
     .from(userTable)
     .where(eq(userTable.id, userId))

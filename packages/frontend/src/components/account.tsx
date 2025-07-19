@@ -18,10 +18,10 @@ export const Account = () => {
         </time>
 
         <ul className="text-muted-foreground mt-6 space-y-1 text-sm">
-          <li>Events: {accountInfo.eventsCount}</li>
-          <li>Questions Asked: {accountInfo.questionsCount}</li>
-          <li>Participating: {accountInfo.participationsCount}</li>
-          <li>Bookmarked Events: {accountInfo.bookmarksCount}</li>
+          <li>Events: {accountInfo.eventCount}</li>
+          <li>Questions Asked: {accountInfo.questionCount}</li>
+          <li>Participating: {accountInfo.participationCount}</li>
+          <li>Bookmarked Events: {accountInfo.bookmarkCount}</li>
         </ul>
       </div>
     )
