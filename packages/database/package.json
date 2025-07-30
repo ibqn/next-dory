@@ -16,11 +16,11 @@
     "@oslojs/encoding": "^1.1.0",
     "argon2": "^0.43.1",
     "date-fns": "^4.1.0",
-    "drizzle-orm": "^0.44.3",
+    "drizzle-orm": "^0.44.4",
     "drizzle-zod": "~0.8.2",
     "lodash.unset": "^4.5.2",
     "postgres": "^3.4.7",
-    "zod": "^4.0.10"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@types/lodash.unset": "^4.5.9",
