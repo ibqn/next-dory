@@ -13,7 +13,7 @@ importers:
         version: 1.18.1(hono@4.9.0)
       '@hono/zod-validator':
         specifier: ^0.7.2
-        version: 0.7.2(hono@4.9.0)(zod@4.0.15)
+        version: 0.7.2(hono@4.9.0)(zod@4.0.17)
       arctic:
         specifier: ^3.7.0
         version: 3.7.0
@@ -36,8 +36,8 @@ importers:
         specifier: ^13.1.1
         version: 13.1.1
       zod:
-        specifier: ^4.0.15
-        version: 4.0.15
+        specifier: ^4.0.17
+        version: 4.0.17
     devDependencies:
       '@types/node':
         specifier: ^24.2.1
@@ -462,8 +462,8 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  zod@4.0.15:
-    resolution: {integrity: sha512-2IVHb9h4Mt6+UXkyMs0XbfICUh1eUrlJJAOupBHUhLRnKkruawyDddYRCs0Eizt900ntIMk9/4RksYl+FgSpcQ==}
+  zod@4.0.17:
+    resolution: {integrity: sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ==}
 
 snapshots:
 
@@ -549,10 +549,10 @@ snapshots:
     dependencies:
       hono: 4.9.0
 
-  '@hono/zod-validator@0.7.2(hono@4.9.0)(zod@4.0.15)':
+  '@hono/zod-validator@0.7.2(hono@4.9.0)(zod@4.0.17)':
     dependencies:
       hono: 4.9.0
-      zod: 4.0.15
+      zod: 4.0.17
 
   '@oslojs/asn1@1.0.0':
     dependencies:
@@ -827,4 +827,4 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  zod@4.0.15: {}
+  zod@4.0.17: {}
