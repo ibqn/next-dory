@@ -14,7 +14,7 @@
   "dependencies": {
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0",
-    "argon2": "^0.43.1",
+    "argon2": "^0.44.0",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.44.4",
     "drizzle-zod": "~0.8.3",
@@ -24,9 +24,9 @@
   },
   "devDependencies": {
     "@types/lodash.unset": "^4.5.9",
-    "@types/node": "^24.2.1",
+    "@types/node": "^24.3.0",
     "drizzle-kit": "^0.31.4",
-    "tsx": "^4.20.3",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   }
 }
