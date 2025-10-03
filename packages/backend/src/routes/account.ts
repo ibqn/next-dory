@@ -1,11 +1,11 @@
 import { Hono } from "hono"
-import type { Context } from "../utils/context"
+import type { ExtEnv } from "../utils/extended-env"
 import { signedIn } from "../middleware/signed-in"
 import type { User } from "database/src/drizzle/schema/auth"
 import { getAccountInfo, type AccountInfo } from "database/src/queries/account-info"
 import type { ErrorResponse, SuccessResponse } from "database/src/types"
 
-export const accountRoute = new Hono<Context>()
+export const accountRoute = new Hono<ExtEnv>()
 
 accountRoute.get("/info", signedIn, async (c) => {
   const user = c.get("user") as User

@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import type { Context } from "../utils/context"
+import type { ExtEnv } from "../utils/extended-env"
 import { signedIn } from "../middleware/signed-in"
 import { zValidator } from "@hono/zod-validator"
 import { paginationSchema } from "database/src/validators/pagination"
@@ -19,7 +19,7 @@ import { createUserSchema, updateUserSchema } from "database/src/validators/user
 import { Permission } from "database/src/permission"
 import { HTTPException } from "hono/http-exception"
 
-export const userRoute = new Hono<Context>()
+export const userRoute = new Hono<ExtEnv>()
 
 userRoute
   .post("/", signedIn, zValidator("json", createUserSchema), async (c) => {

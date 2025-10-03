@@ -1,4 +1,4 @@
-import type { Context } from "../utils/context"
+import type { ExtEnv } from "../utils/extended-env"
 import { Hono } from "hono"
 import { getCookie, setCookie } from "hono/cookie"
 import { createSession, generateSessionToken } from "database/src/lucia"
@@ -12,7 +12,7 @@ import axios from "axios"
 import { z } from "zod"
 import { Provider } from "database/src/types"
 
-const socialAuthRoute = new Hono<Context>()
+const socialAuthRoute = new Hono<ExtEnv>()
   .get("/sign-in/github", async (c) => {
     const state = generateState()
     const scopes = ["user:email"]

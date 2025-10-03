@@ -1,4 +1,4 @@
-import type { Context } from "../utils/context"
+import type { ExtEnv } from "../utils/extended-env"
 import { Hono } from "hono"
 import { signinSchema } from "database/src/validators/signin"
 import { signupSchema } from "database/src/validators/signup"
@@ -16,7 +16,7 @@ import { newPasswordSchema } from "database/src/validators/new-password"
 import { paramTokenSchema } from "database/src/validators/param"
 import { zValidator } from "../utils/z-validator"
 
-const authRoute = new Hono<Context>()
+const authRoute = new Hono<ExtEnv>()
   .post("/signup", zValidator("json", signupSchema), async (c) => {
     const inputData = c.req.valid("json")
 

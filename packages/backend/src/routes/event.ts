@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import type { Context } from "../utils/context"
+import type { ExtEnv } from "../utils/extended-env"
 import { signedIn } from "../middleware/signed-in"
 import { zValidator } from "@hono/zod-validator"
 import { paginationSchema } from "database/src/validators/pagination"
@@ -15,7 +15,7 @@ import type { Event } from "database/src/drizzle/schema/event"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
 import { paramUuidSchema } from "database/src/validators/param"
 
-export const eventRoute = new Hono<Context>()
+export const eventRoute = new Hono<ExtEnv>()
 
 eventRoute
   .get("/", signedIn, zValidator("query", paginationSchema), async (c) => {

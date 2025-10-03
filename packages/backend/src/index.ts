@@ -1,6 +1,6 @@
 import { serve } from "@hono/node-server"
 import { Hono } from "hono"
-import type { Context } from "./utils/context"
+import type { ExtEnv } from "./utils/extended-env"
 import { prettyJSON } from "hono/pretty-json"
 import type { ErrorResponse, SuccessResponse } from "database/src/types"
 import { HTTPException } from "hono/http-exception"
@@ -17,7 +17,7 @@ import { socialAuthRoute } from "./routes/social-auth"
 import { eventRoute } from "./routes/event"
 import { accountRoute } from "./routes/account"
 
-const app = new Hono<Context>()
+const app = new Hono<ExtEnv>()
 
 app.use(pinoLogger())
 app.use(prettyJSON())
