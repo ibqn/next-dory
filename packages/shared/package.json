@@ -1,0 +1,19 @@
+{
+  "name": "shared",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "lint": "eslint .",
+    "build": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.8.1",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
+    "zod": "^4.1.12"
+  }
+}
