@@ -3,19 +3,23 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { UsersIcon } from "lucide-react"
 import { cn } from "@/lib/class-names"
+import type { ComponentProps } from "react"
 
 type Props = {
   event: Event
-}
+} & ComponentProps<typeof Card>
 
-export const EventCard = ({ event }: Props) => {
+export const EventCard = ({ event, className, ...props }: Props) => {
   const questionCount = event.questions?.length ?? 0
   const pollCount = event.polls?.length ?? 0
   const participantCount = event.participants?.length ?? 0
 
   return (
     <Link href={"#"} prefetch={false} className="flex-1">
-      <Card className={cn("rounded-none border-t-0 border-r-0 border-b-0 border-l-4 border-gray-400/80")}>
+      <Card
+        {...props}
+        className={cn("rounded-none border-t-0 border-r-0 border-b-0 border-l-4 border-gray-400/80", className)}
+      >
         <CardHeader>
           <div className="flex justify-between">
             <h4 className="line-clamp-2 text-base font-semibold">{event.name}</h4>
