@@ -10,7 +10,7 @@ import { Suspense } from "react"
 
 export default function LandingPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-[#e8f0ff] to-[#bad0ee] px-4 pb-20 dark:from-[#3B4A66] dark:to-[#283C55]">
+    <main className="flex min-h-screen flex-col items-center bg-linear-to-br from-[#e8f0ff] to-[#bad0ee] px-4 pb-20 dark:from-[#3B4A66] dark:to-[#283C55]">
       <nav className="mt-6 ml-auto inline-flex items-center gap-4">
         <ThemeToggle />
         <Suspense fallback={<AuthLoader />}>
@@ -18,7 +18,7 @@ export default function LandingPage() {
         </Suspense>
       </nav>
 
-      <div className="relative mx-auto mt-10 flex w-full flex-col items-center gap-y-8 lg:mt-16">
+      <div className="relative mx-auto mt-10 flex w-full flex-1 flex-col items-center justify-center gap-y-8 lg:mt-16">
         <Headline />
         <GetStartedButton />
 
