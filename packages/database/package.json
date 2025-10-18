@@ -20,11 +20,11 @@
     "drizzle-zod": "~0.8.3",
     "lodash.unset": "^4.5.2",
     "postgres": "^3.4.7",
-    "zod": "^4.1.11"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@types/lodash.unset": "^4.5.9",
-    "@types/node": "^24.6.2",
+    "@types/node": "^24.8.1",
     "drizzle-kit": "^0.31.5",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
