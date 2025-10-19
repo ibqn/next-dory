@@ -13,9 +13,12 @@ export const Route = {
   events: "/events",
   bookmarked: "/dashboard/bookmarks",
   account: "/dashboard/account",
+} as const
+
+export type Route = (typeof Route)[keyof typeof Route]
+
+export const RouteFunctions = {
   event: ({ eventId, eventSlug }: EventRouteParams) => `/events/${eventId}${eventSlug ? `/${eventSlug}` : ""}`,
   eventPolls: ({ eventId, eventSlug }: EventRouteParams) =>
     `/events/${eventId}${eventSlug ? `/${eventSlug}` : ""}/polls`,
 } as const
-
-export type Route = (typeof Route)[keyof typeof Route]
