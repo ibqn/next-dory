@@ -8,6 +8,8 @@ import { ValuePropositions } from "@/components/value-propositions"
 import Image from "next/image"
 import { Suspense } from "react"
 
+export const dynamic = "force-dynamic"
+
 export default function LandingPage() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-linear-to-br from-[#e8f0ff] to-[#bad0ee] px-4 pb-20 dark:from-[#3B4A66] dark:to-[#283C55]">
