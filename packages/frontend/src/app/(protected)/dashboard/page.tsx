@@ -1,5 +1,6 @@
 import { EventList } from "@/components/event-list"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Loader } from "@/components/loader"
 import { Suspense } from "react"
 
 export default function DashboardPage() {
@@ -8,7 +9,7 @@ export default function DashboardPage() {
       <h2 className="mt-4 mb-2 ml-4 text-2xl font-bold">Your Events</h2>
 
       <div>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <EventList />
         </Suspense>
       </div>
