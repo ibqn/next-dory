@@ -2,7 +2,7 @@ import { serve } from "@hono/node-server"
 import { Hono } from "hono"
 import type { ExtEnv } from "./utils/extended-env"
 import { prettyJSON } from "hono/pretty-json"
-import type { ErrorResponse, SuccessResponse } from "database/src/types"
+import { error as errorResponse, response, type ErrorResponse, type SuccessResponse } from "shared/src/response"
 import { HTTPException } from "hono/http-exception"
 import { getErrorMessage } from "./utils/error"
 import { cors } from "hono/cors"
@@ -22,14 +22,14 @@ const app = new Hono<ExtEnv>()
 app.use(pinoLogger())
 app.use(prettyJSON())
 
-app.notFound((c) => c.json<ErrorResponse>({ error: "Not Found", success: false }, 404))
+app.notFound((c) => c.json<ErrorResponse<string>>(errorResponse("Not Found"), 404))
 
-app.get("/", (c) => c.json<SuccessResponse>({ success: true, message: "Hello Hono!" }, 201))
+app.get("/", (c) => c.json<SuccessResponse>(response("Hello Hono!"), 201))
 
 app.onError((error, c) => {
   if (error instanceof HTTPException) {
-    const errorResponse = error.res ?? c.json<ErrorResponse>({ success: false, error: error.message }, error.status)
-    return errorResponse
+    const response = error.res ?? c.json<ErrorResponse>(errorResponse(error.message), error.status)
+    return response
   }
 
   return c.json<ErrorResponse>({ success: false, error: getErrorMessage(error) }, 500)
