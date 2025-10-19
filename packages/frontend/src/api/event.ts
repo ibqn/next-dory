@@ -6,12 +6,16 @@ import type { ParamUuidSchema } from "database/src/validators/param"
 import { type PaginationSchema, paginationSchema } from "database/src/validators/pagination"
 
 export const getEventItem = async ({ uuid }: ParamUuidSchema) => {
-  const { data: response } = await axios.get<ApiResponse<Event>>(`/event/${uuid}`)
-  if (!response.success) {
+  try {
+    const { data: response } = await axios.get<ApiResponse<Event>>(`/event/${uuid}`)
+    if (!response.success) {
+      return null
+    }
+    return response.data
+  } catch (error) {
+    console.log("Error fetching event item:", error)
     return null
   }
-
-  return response.data
 }
 
 export const eventQueryOptions = (paramUuid?: ParamUuidSchema) => {
