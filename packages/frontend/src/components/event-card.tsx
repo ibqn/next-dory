@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { UsersIcon } from "lucide-react"
 import { cn } from "@/lib/class-names"
 import type { ComponentProps } from "react"
+import { RouteFunctions } from "@/routes"
 
 type Props = {
   event: Event
@@ -15,7 +16,7 @@ export const EventCard = ({ event, className, ...props }: Props) => {
   const participantCount = event.participants?.length ?? 0
 
   return (
-    <Link href={"#"} prefetch={false} className="flex-1">
+    <Link href={RouteFunctions.event({ eventId: event.id, eventSlug: event.slug })} prefetch={false} className="flex-1">
       <Card
         {...props}
         className={cn("rounded-none border-t-0 border-r-0 border-b-0 border-l-4 border-gray-400/80", className)}
