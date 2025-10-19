@@ -4,6 +4,7 @@ import { eventListQueryOptions } from "@/api/event"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { EventCard } from "@/components/event-card"
 import { PlusIcon } from "lucide-react"
+import { NoContent } from "@/components/no-content/no-content"
 
 export const EventList = () => {
   const { data } = useSuspenseQuery(eventListQueryOptions())
@@ -21,6 +22,7 @@ export const EventList = () => {
       {data.eventItems.map((event) => (
         <EventCard key={event.id} event={event} />
       ))}
+      {data.eventItems.length === 0 && <NoContent>No events found.</NoContent>}
     </div>
   )
 }
