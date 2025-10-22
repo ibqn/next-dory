@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: ^1.19.5
-        version: 1.19.5(hono@4.10.1)
+        version: 1.19.5(hono@4.10.2)
       '@hono/zod-validator':
         specifier: ^0.7.4
-        version: 0.7.4(hono@4.10.1)(zod@4.1.12)
+        version: 0.7.4(hono@4.10.2)(zod@4.1.12)
       arctic:
         specifier: ^3.7.0
         version: 3.7.0
@@ -24,11 +24,11 @@ importers:
         specifier: workspace:*
         version: link:../database
       hono:
-        specifier: ^4.10.1
-        version: 4.10.1
+        specifier: ^4.10.2
+        version: 4.10.2
       hono-pino:
         specifier: ^0.10.3
-        version: 0.10.3(hono@4.10.1)(pino@10.1.0)
+        version: 0.10.3(hono@4.10.2)(pino@10.1.0)
       pino:
         specifier: ^10.1.0
         version: 10.1.0
@@ -43,8 +43,8 @@ importers:
         version: 4.1.12
     devDependencies:
       '@types/node':
-        specifier: ^24.8.1
-        version: 24.8.1
+        specifier: ^24.9.1
+        version: 24.9.1
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -240,8 +240,8 @@ packages:
   '@pinojs/redact@0.4.0':
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
 
-  '@types/node@24.8.1':
-    resolution: {integrity: sha512-alv65KGRadQVfVcG69MuB4IzdYVpRwMG/mq8KWOaoOdyY617P5ivaDiMCGOFDWD2sAn5Q0mR3mRtUOgm99hL9Q==}
+  '@types/node@24.9.1':
+    resolution: {integrity: sha512-QoiaXANRkSXK6p0Duvt56W208du4P9Uye9hWLWgGMDTEoKPhuenzNcC4vGUmrNkiOKTlIrBoyNQYNpSwfEZXSg==}
 
   arctic@3.7.0:
     resolution: {integrity: sha512-ZMQ+f6VazDgUJOd+qNV+H7GohNSYal1mVjm5kEaZfE2Ifb7Ss70w+Q7xpJC87qZDkMZIXYf0pTIYZA0OPasSbw==}
@@ -369,8 +369,8 @@ packages:
       hono: '>=4.0.0'
       pino: '>=7.1.0'
 
-  hono@4.10.1:
-    resolution: {integrity: sha512-rpGNOfacO4WEPClfkEt1yfl8cbu10uB1lNpiI33AKoiAHwOS8lV748JiLx4b5ozO/u4qLjIvfpFsPXdY5Qjkmg==}
+  hono@4.10.2:
+    resolution: {integrity: sha512-p6fyzl+mQo6uhESLxbF5WlBOAJMDh36PljwlKtP5V1v09NxlqGru3ShK+4wKhSuhuYf8qxMmrivHOa/M7q0sMg==}
     engines: {node: '>=16.9.0'}
 
   joycon@3.1.1:
@@ -458,8 +458,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  undici-types@7.14.0:
-    resolution: {integrity: sha512-QQiYxHuyZ9gQUIrmPo3IA+hUl4KYk8uSA7cHrcKd/l3p1OTpZcM0Tbp9x7FAtXdAYhlasd60ncPpgu6ihG6TOA==}
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
@@ -547,13 +547,13 @@ snapshots:
   '@esbuild/win32-x64@0.25.11':
     optional: true
 
-  '@hono/node-server@1.19.5(hono@4.10.1)':
+  '@hono/node-server@1.19.5(hono@4.10.2)':
     dependencies:
-      hono: 4.10.1
+      hono: 4.10.2
 
-  '@hono/zod-validator@0.7.4(hono@4.10.1)(zod@4.1.12)':
+  '@hono/zod-validator@0.7.4(hono@4.10.2)(zod@4.1.12)':
     dependencies:
-      hono: 4.10.1
+      hono: 4.10.2
       zod: 4.1.12
 
   '@oslojs/asn1@1.0.0':
@@ -577,9 +577,9 @@ snapshots:
 
   '@pinojs/redact@0.4.0': {}
 
-  '@types/node@24.8.1':
+  '@types/node@24.9.1':
     dependencies:
-      undici-types: 7.14.0
+      undici-types: 7.16.0
 
   arctic@3.7.0:
     dependencies:
@@ -725,13 +725,13 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono-pino@0.10.3(hono@4.10.1)(pino@10.1.0):
+  hono-pino@0.10.3(hono@4.10.2)(pino@10.1.0):
     dependencies:
       defu: 6.1.4
-      hono: 4.10.1
+      hono: 4.10.2
       pino: 10.1.0
 
-  hono@4.10.1: {}
+  hono@4.10.2: {}
 
   joycon@3.1.1: {}
 
@@ -825,7 +825,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  undici-types@7.14.0: {}
+  undici-types@7.16.0: {}
 
   wrappy@1.0.2: {}
 
