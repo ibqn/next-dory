@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { getSessionCookieOptions, sessionCookieName } from "database/src/cookie"
 
-export async function middleware(request: NextRequest): Promise<NextResponse> {
+export async function proxy(request: NextRequest): Promise<NextResponse> {
   if (request.method === "GET") {
     const response = NextResponse.next()
     const token = request.cookies.get(sessionCookieName)?.value ?? null
