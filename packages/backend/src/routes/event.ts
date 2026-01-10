@@ -13,7 +13,7 @@ import {
 import type { User } from "database/src/drizzle/schema/auth"
 import type { Event } from "database/src/drizzle/schema/event"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
-import { paramUuidSchema } from "database/src/validators/param"
+import { paramIdSchema } from "database/src/validators/param"
 
 export const eventRoute = new Hono<ExtEnv>()
 
@@ -47,8 +47,8 @@ eventRoute
       pagination: { page, totalPages: Math.ceil(eventCount / limit), totalItems: eventCount },
     })
   })
-  .get("/:uuid", signedIn, zValidator("param", paramUuidSchema), async (c) => {
-    const { uuid: eventId } = c.req.valid("param")
+  .get("/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+    const { id: eventId } = c.req.valid("param")
     const user = c.get("user") as User
 
     const eventItem = await getEventItem({ eventId, userId: user.id })

@@ -14,7 +14,7 @@ import {
 import type { User } from "database/src/drizzle/schema/auth"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
 import { havePermission } from "database/src/queries/permission"
-import { paramUuidSchema } from "database/src/validators/param"
+import { paramIdSchema } from "database/src/validators/param"
 import { createUserSchema, updateUserSchema } from "database/src/validators/user"
 import { Permission } from "database/src/permission"
 import { HTTPException } from "hono/http-exception"
@@ -34,8 +34,8 @@ userRoute
     const userItem = await createUserItem({ ...input })
     return c.json<SuccessResponse<User>>({ success: true, data: userItem, message: "User created" })
   })
-  .patch("/:uuid", signedIn, zValidator("param", paramUuidSchema), zValidator("json", updateUserSchema), async (c) => {
-    const { uuid } = c.req.valid("param")
+  .patch("/:id", signedIn, zValidator("param", paramIdSchema), zValidator("json", updateUserSchema), async (c) => {
+    const { id } = c.req.valid("param")
     const input = c.req.valid("json")
     const user = c.get("user") as User
 
@@ -43,7 +43,7 @@ userRoute
     if (!permission) {
       return c.json<ErrorResponse>({ success: false, error: "You do not have permission to update users" }, 403)
     }
-    const userItem = await updateUserItem({ ...input, uuid })
+    const userItem = await updateUserItem({ ...input, id })
     if (!userItem) {
       throw new HTTPException(404, { message: "User not found" })
     }
@@ -69,15 +69,15 @@ userRoute
       pagination: { page, totalPages: Math.ceil(userCount / limit), totalItems: userCount },
     })
   })
-  .delete("/:uuid", signedIn, zValidator("param", paramUuidSchema), async (c) => {
-    const { uuid } = c.req.valid("param")
+  .delete("/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+    const { id } = c.req.valid("param")
     const user = c.get("user") as User
 
     const permission = await havePermission(user.id, Permission.userDelete)
     if (!permission) {
       return c.json<ErrorResponse>({ success: false, error: "You do not have permission to delete users" }, 403)
     }
-    const { id: deletedId } = await deleteUserItem({ uuid })
+    const { id: deletedId } = await deleteUserItem({ id })
 
     if (!deletedId) {
       throw new HTTPException(404, { message: "User not found" })
@@ -88,8 +88,8 @@ userRoute
       message: "User deleted",
     })
   })
-  .get("/:uuid", signedIn, zValidator("param", paramUuidSchema), async (c) => {
-    const { uuid: userId } = c.req.valid("param")
+  .get("/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+    const { id: userId } = c.req.valid("param")
     const user = c.get("user") as User
 
     const permission = await havePermission(user.id, Permission.userView)

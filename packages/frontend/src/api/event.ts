@@ -2,12 +2,12 @@ import { axios } from "./axios"
 import type { ApiResponse, PaginatedSuccessResponse } from "database/src/types"
 import { keepPreviousData, queryOptions } from "@tanstack/react-query"
 import type { Event } from "database/src/drizzle/schema/event"
-import type { ParamUuidSchema } from "database/src/validators/param"
+import type { ParamIdSchema } from "database/src/validators/param"
 import { type PaginationSchema, paginationSchema } from "database/src/validators/pagination"
 
-export const getEventItem = async ({ uuid }: ParamUuidSchema) => {
+export const getEventItem = async ({ id }: ParamIdSchema) => {
   try {
-    const { data: response } = await axios.get<ApiResponse<Event>>(`/event/${uuid}`)
+    const { data: response } = await axios.get<ApiResponse<Event>>(`/event/${id}`)
     if (!response.success) {
       return null
     }
@@ -18,11 +18,11 @@ export const getEventItem = async ({ uuid }: ParamUuidSchema) => {
   }
 }
 
-export const eventQueryOptions = (paramUuid?: ParamUuidSchema) => {
+export const eventQueryOptions = (paramUuid?: ParamIdSchema) => {
   return queryOptions({
-    queryKey: ["event", paramUuid?.uuid ?? ""] as const,
-    queryFn: () => (paramUuid?.uuid ? getEventItem({ uuid: paramUuid?.uuid }) : null),
-    enabled: !!paramUuid?.uuid,
+    queryKey: ["event", paramUuid?.id ?? ""] as const,
+    queryFn: () => (paramUuid?.id ? getEventItem({ id: paramUuid?.id }) : null),
+    enabled: !!paramUuid?.id,
   })
 }
 

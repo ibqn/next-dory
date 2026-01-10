@@ -4,7 +4,7 @@ import { userTable, type User } from "../drizzle/schema/auth"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
 import unset from "lodash.unset"
 import type { CreateUserSchema, UpdateUserSchema } from "../validators/user"
-import type { ParamUuidSchema } from "../validators/param"
+import type { ParamIdSchema } from "../validators/param"
 
 export const createUserItem = async (input: CreateUserSchema) => {
   await db.insert(userTable).values(input).onConflictDoNothing()
@@ -14,14 +14,14 @@ export const createUserItem = async (input: CreateUserSchema) => {
   return user satisfies User as User
 }
 
-export const updateUserItem = async (input: ParamUuidSchema & UpdateUserSchema) => {
-  const [user] = await db.update(userTable).set(input).where(eq(userTable.id, input.uuid)).returning()
+export const updateUserItem = async (input: ParamIdSchema & UpdateUserSchema) => {
+  const [user] = await db.update(userTable).set(input).where(eq(userTable.id, input.id)).returning()
 
   return user satisfies User as User | null
 }
 
-export const deleteUserItem = async ({ uuid }: ParamUuidSchema) => {
-  const [user] = await db.delete(userTable).where(eq(userTable.id, uuid)).returning({ id: userTable.id })
+export const deleteUserItem = async ({ id }: ParamIdSchema) => {
+  const [user] = await db.delete(userTable).where(eq(userTable.id, id)).returning({ id: userTable.id })
 
   return { id: user?.id ?? null }
 }
