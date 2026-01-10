@@ -1,1 +1,0 @@
-ALTER TABLE "drizzle"."user" ADD COLUMN "avatar_url" text;
