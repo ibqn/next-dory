@@ -15,6 +15,13 @@
       "when": 1768053598873,
       "tag": "0001_hot_network",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768053794996,
+      "tag": "0002_medical_professor_monster",
+      "breakpoints": true
     }
   ]
 }
