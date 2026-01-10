@@ -1,0 +1,1 @@
+ALTER TABLE "drizzle"."user" ALTER COLUMN "username" DROP NOT NULL;
