@@ -23,7 +23,7 @@ async function seed() {
   const users = [
     {
       username: "ibqn",
-      email: "evgen.ibqn@gmail.com",
+      email: "ibqn@gmail.com",
       passwordHash: await argon2.hash("rootme99"),
     },
     {
