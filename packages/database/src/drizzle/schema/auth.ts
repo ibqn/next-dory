@@ -7,7 +7,7 @@ import { Provider } from "../../types"
 
 export const userTable = schema.table("user", {
   id: uuid("id").primaryKey().defaultRandom(),
-  username: text("username").notNull().unique(),
+  username: text("username").notNull(),
   email: text("email").notNull().unique(),
   avatarUrl: text("avatar_url"),
   emailVerified: timestamp("email_verified", { withTimezone: true }),
