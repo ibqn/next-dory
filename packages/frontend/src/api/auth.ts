@@ -41,7 +41,7 @@ export const validate = async (): Promise<SessionValidationResult> => {
     }
     return response.data
   } catch (error) {
-    console.error("Error validating session:", error)
+    console.log("Error validating session:", error)
     return { user: null, session: null }
   }
 }
