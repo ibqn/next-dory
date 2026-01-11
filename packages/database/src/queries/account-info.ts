@@ -3,7 +3,7 @@ import { db } from "../drizzle/db"
 import { userTable, type User } from "../drizzle/schema/auth"
 import { eventBookmarkTable, eventParticipantTable, eventTable } from "../drizzle/schema/event"
 import { questionTable } from "../drizzle/schema/question"
-import unset from "lodash.unset"
+import { unset } from "lodash-es"
 
 type GetAccountInfoOptions = {
   userId: User["id"]

@@ -2,7 +2,7 @@ import { asc, countDistinct, desc, eq } from "drizzle-orm"
 import { db } from "../drizzle/db"
 import { userTable, type User } from "../drizzle/schema/auth"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
-import unset from "lodash.unset"
+import { unset } from "lodash-es"
 import type { CreateUserSchema, UpdateUserSchema } from "../validators/user"
 import type { ParamIdSchema } from "../validators/param"
 

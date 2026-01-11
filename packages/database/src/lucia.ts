@@ -3,7 +3,7 @@ import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from "@oslojs/enco
 import { sha256 } from "@oslojs/crypto/sha2"
 import { db } from "./drizzle/db"
 import { eq } from "drizzle-orm"
-import unset from "lodash.unset"
+import { unset } from "lodash-es"
 
 export function generateSessionToken(): string {
   const bytes = new Uint8Array(20)
