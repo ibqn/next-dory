@@ -4,6 +4,7 @@ import "./globals.css"
 import type { ReactNode } from "react"
 import { Providers } from "@/components/providers"
 import { cn } from "@/lib/class-names"
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <body className={cn(geistSans.variable, geistMono.variable, "bg-zinc-100 antialiased dark:bg-gray-700")}>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   )
