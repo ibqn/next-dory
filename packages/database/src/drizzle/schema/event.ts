@@ -31,6 +31,7 @@ export type Event = InferSelectModel<typeof eventTable> & {
   participants?: EventParticipant[] | null
   polls?: Poll[] | null
   questions?: Question[] | null
+  bookmarkedBy?: EventBookmark[] | null
 }
 
 export const eventParticipantTable = schema.table(
@@ -74,7 +75,10 @@ export const eventBookmarkTable = schema.table(
   }
 )
 
-export type EventBookmark = InferSelectModel<typeof eventParticipantTable>
+export type EventBookmark = InferSelectModel<typeof eventBookmarkTable> & {
+  event?: Event | null
+  user?: User | null
+}
 
 export const eventBookmarkRelations = relations(eventBookmarkTable, ({ one }) => ({
   event: one(eventTable, { fields: [eventBookmarkTable.eventId], references: [eventTable.id] }),
