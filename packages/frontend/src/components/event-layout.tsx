@@ -11,6 +11,7 @@ import { notFound, useParams } from "next/navigation"
 import { UserAvatar } from "@/components/user-avatar"
 import { ParticipantsTooltip } from "./tooltips/participants-tooltip"
 import { CopyEventLinkButton } from "./buttons/copy-event-link-button"
+import { BookmarkEventButton } from "./buttons/bookmark-event-button"
 
 type Props = PropsWithChildren
 
@@ -55,9 +56,9 @@ export const EventLayout = ({ children }: Props) => {
           <div className="mt-6 inline-flex items-center gap-x-2 lg:mt-0">
             <CopyEventLinkButton eventId={event.id} eventSlug={event.slug} />
 
-            {/* <BookmarkEventButton event={event} />
+            <BookmarkEventButton event={event} />
 
-            <EventAdminMenu event={event} /> */}
+            {/* <EventAdminMenu event={event} /> */}
           </div>
         </div>
       </div>
