@@ -47,11 +47,9 @@ eventRoute
       pagination: { page, totalPages: Math.ceil(eventCount / limit), totalItems: eventCount },
     })
   })
-  .get("/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+  .get("/:id", zValidator("param", paramIdSchema), async (c) => {
     const { id: eventId } = c.req.valid("param")
-    const user = c.get("user") as User
-
-    const eventItem = await getEventItem({ eventId, userId: user.id })
+    const eventItem = await getEventItem({ eventId })
 
     if (!eventItem) {
       return c.json<ErrorResponse>({ success: false, error: "Event not found" }, 404)
