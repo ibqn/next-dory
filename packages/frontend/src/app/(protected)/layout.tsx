@@ -1,15 +1,20 @@
 import { validateRequest } from "@/auth"
 import { Navbar } from "@/components/navbar"
 import { redirect } from "next/navigation"
+import type { ReactNode } from "react"
 
 export const dynamic = "force-dynamic"
 
-export default async function Layout({ children }: { children: React.ReactNode }) {
-  const validationResult = await validateRequest()
+type Props = Readonly<{
+  children: ReactNode
+}>
 
-  console.log("validate", validationResult)
+export default async function Layout({ children }: Props) {
+  const { user } = await validateRequest()
 
-  if (!validationResult.user) {
+  console.log("validate", user)
+
+  if (!user) {
     redirect("/sign-in")
   }
 
