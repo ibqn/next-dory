@@ -2,41 +2,42 @@ import { GithubIcon } from "@/components/github-icon"
 import { GoogleIcon } from "@/components/google-icon"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Field, FieldDescription, FieldGroup } from "@/components/ui/field"
 import { env } from "@/env"
 import Link from "next/link"
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <Card className="w-full max-w-sm">
       <CardHeader className="text-center">
-        <CardTitle className="text-xl">Welcome back</CardTitle>
-        <CardDescription>Sign in with your GitHub or Google account</CardDescription>
+        <CardTitle className="text-xl">Create an account</CardTitle>
+        <CardDescription>Sign up with your Github or Google account</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
-          <div className="grid gap-6">
-            <div className="flex flex-col gap-4">
+          <FieldGroup>
+            <Field className="gap-4">
               <Button asChild variant="outline" className="w-full">
                 <a href={`${env.API_URL}/auth/sign-in/github`}>
                   <GithubIcon />
-                  Sign in with GitHub
+                  Sign up with GitHub
                 </a>
               </Button>
+
               <Button asChild variant="outline" className="w-full">
                 <a href={`${env.API_URL}/auth/sign-in/google`}>
                   <GoogleIcon />
-                  Sign in with Google
+                  Sign up with Google
                 </a>
               </Button>
-            </div>
+            </Field>
 
-            <div className="text-muted-foreground text-center text-sm leading-normal font-normal">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="underline underline-offset-4">
-                Sign up
-              </Link>
-            </div>
-          </div>
+            <Field>
+              <FieldDescription className="text-center">
+                Have an account already? <Link href="/sign-in">Sign in</Link>
+              </FieldDescription>
+            </Field>
+          </FieldGroup>
         </form>
       </CardContent>
     </Card>
