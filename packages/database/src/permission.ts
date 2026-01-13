@@ -9,6 +9,11 @@ export const Permission = {
   roleUpdate: "role:update",
   roleDelete: "role:delete",
 
+  eventCreate: "event:create",
+  eventView: "event:view",
+  eventUpdate: "event:update",
+  eventDelete: "event:delete",
+
   organizationCreate: "organization:create",
   organizationView: "organization:view",
   organizationUpdate: "organization:update",

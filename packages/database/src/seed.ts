@@ -6,17 +6,7 @@ import { permissionTable, rolePermissionTable, roleTable, userRoleTable } from "
 import { Permission } from "./permission"
 
 async function seed() {
-  const permissions = [
-    Permission.userCreate,
-    Permission.userView,
-    Permission.userUpdate,
-    Permission.userDelete,
-
-    Permission.roleCreate,
-    Permission.roleView,
-    Permission.roleUpdate,
-    Permission.roleDelete,
-  ]
+  const permissions: Permission[] = Object.values(Permission)
 
   const roles = ["admin", "user"]
 
