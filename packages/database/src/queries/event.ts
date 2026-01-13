@@ -1,8 +1,10 @@
 import { eventBookmarkTable, eventTable, type Event } from "../drizzle/schema/event"
 import { db } from "../drizzle/db"
 import type { PaginationSchema, SortedBySchema } from "../validators/pagination"
-import type { User } from "src/drizzle/schema/auth"
-import { asc, countDistinct, desc, eq, sql } from "drizzle-orm"
+import type { User } from "../drizzle/schema/auth"
+import { and, asc, countDistinct, desc, eq, sql } from "drizzle-orm"
+import { havePermission } from "./permission"
+import { Permission } from "../permission"
 
 export const getEventItemsCount = async () => {
   const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
@@ -100,4 +102,30 @@ export const getBookmarkedEventItems = async ({
   const bookmarkedEventItems = eventBookmarkItems.map(({ event }) => event)
 
   return bookmarkedEventItems satisfies Event[] as Event[]
+}
+
+type DeleteEventOptions = {
+  eventId: Event["id"]
+  userId: User["id"]
+}
+
+export const deleteEvent = async ({ eventId, userId }: DeleteEventOptions): Promise<Event | null> => {
+  const canDeleteEvent = await havePermission(userId, Permission.eventDelete)
+
+  const isOwner = await db.query.event.findFirst({
+    where: and(eq(eventTable.id, eventId), eq(eventTable.userId, userId)),
+    columns: { id: true },
+  })
+
+  if (!canDeleteEvent && !isOwner) {
+    return null
+  }
+
+  const [event] = await db.delete(eventTable).where(eq(eventTable.id, eventId)).returning()
+
+  if (!event) {
+    return null
+  }
+
+  return event satisfies Event
 }
