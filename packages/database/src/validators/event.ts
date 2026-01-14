@@ -1,0 +1,53 @@
+import { z } from "zod"
+import { event } from "./constants"
+
+export const eventIdSchema = z.uuid()
+
+export const eventSlugSchema = z
+  .string()
+  .min(event.slug.minLength, {
+    message: `Event slug must have at least ${event.slug.minLength} characters.`,
+  })
+  .max(event.slug.maxLength, {
+    message: `Event slug must not exceed ${event.slug.maxLength} characters.`,
+  })
+
+export const descriptionSchema = z
+  .string()
+  .min(event.description.minLength, {
+    message: `Event description must have at least ${event.description.minLength} characters.`,
+  })
+  .max(event.description.maxLength, {
+    message: `Event description must not exceed ${event.description.maxLength} characters.`,
+  })
+
+export const createEventSchema = z.object({
+  name: z
+    .string()
+    .min(event.name.minLength, {
+      message: `Event name must have at least ${event.name.minLength} characters.`,
+    })
+    .max(event.name.maxLength, {
+      message: `Event name must not exceed ${event.name.maxLength} characters.`,
+    }),
+  slug: eventSlugSchema,
+  description: descriptionSchema,
+})
+
+export const updateEventSchema = z.object({
+  eventId: eventIdSchema,
+  description: descriptionSchema,
+})
+
+export const deleteEventSchema = z.object({
+  eventId: eventIdSchema,
+})
+
+export const eventPublicIdSchema = z.object({
+  eventId: eventIdSchema,
+  eventSlug: eventSlugSchema,
+})
+
+export type CreateEventSchema = z.infer<typeof createEventSchema>
+export type UpdateEventSchema = z.infer<typeof updateEventSchema>
+export type DeleteEventSchema = z.infer<typeof deleteEventSchema>
