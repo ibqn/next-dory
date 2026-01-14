@@ -9,15 +9,32 @@ import {
   getEventItem,
   getBookmarkedEventItemsCount,
   getBookmarkedEventItems,
+  deleteEventItem,
+  createEventItem,
 } from "database/src/queries/event"
 import type { User } from "database/src/drizzle/schema/auth"
 import type { Event } from "database/src/drizzle/schema/event"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
 import { paramIdSchema } from "database/src/validators/param"
+import { createEventSchema } from "database/src/validators/event"
 
 export const eventRoute = new Hono<ExtEnv>()
 
 eventRoute
+  .post("/", signedIn, zValidator("json", createEventSchema), async (c) => {
+    const inputData = c.req.valid("json")
+    const user = c.get("user") as User
+
+    const eventItem = await createEventItem({ ...inputData, userId: user.id })
+    return c.json<SuccessResponse<Event>>(
+      {
+        success: true,
+        data: eventItem,
+        message: "Event created",
+      },
+      201
+    )
+  })
   .get("/", signedIn, zValidator("query", paginationSchema), async (c) => {
     const query = c.req.valid("query")
     const { page, limit } = query
@@ -56,4 +73,23 @@ eventRoute
     }
 
     return c.json<SuccessResponse<Event>>({ success: true, data: eventItem, message: "Event retrieved" })
+  })
+  .delete("/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+    const { id: eventId } = c.req.valid("param")
+    const user = c.get("user") as User
+
+    const eventItem = await deleteEventItem({ eventId, userId: user.id })
+
+    if (!eventItem) {
+      return c.json<ErrorResponse>(
+        { success: false, error: "Event not found or you do not have permission to delete it" },
+        404
+      )
+    }
+
+    return c.json<SuccessResponse<Event>>({
+      success: true,
+      data: eventItem,
+      message: "Event deleted",
+    })
   })

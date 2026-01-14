@@ -9,9 +9,10 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import { eventQueryOptions } from "@/api/event"
 import { notFound, useParams } from "next/navigation"
 import { UserAvatar } from "@/components/user-avatar"
-import { ParticipantsTooltip } from "./tooltips/participants-tooltip"
-import { CopyEventLinkButton } from "./buttons/copy-event-link-button"
-import { BookmarkEventButton } from "./buttons/bookmark-event-button"
+import { ParticipantsTooltip } from "@/components/tooltips/participants-tooltip"
+import { CopyEventLinkButton } from "@/components/buttons/copy-event-link-button"
+import { BookmarkEventButton } from "@/components/buttons/bookmark-event-button"
+import { EventAdminMenu } from "@/components/menu/event-admin-menu"
 
 type Props = PropsWithChildren
 
@@ -58,7 +59,7 @@ export const EventLayout = ({ children }: Props) => {
 
             <BookmarkEventButton event={event} />
 
-            {/* <EventAdminMenu event={event} /> */}
+            <EventAdminMenu event={event} />
           </div>
         </div>
       </div>

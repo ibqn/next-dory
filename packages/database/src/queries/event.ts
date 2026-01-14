@@ -6,6 +6,19 @@ import { and, asc, countDistinct, desc, eq, sql } from "drizzle-orm"
 import { havePermission } from "./permission"
 import { Permission } from "../permission"
 
+export type CreateEventOptions = {
+  userId: User["id"]
+  name: Event["name"]
+  slug: Event["slug"]
+  description: Event["description"]
+}
+
+export const createEventItem = async (input: CreateEventOptions): Promise<Event> => {
+  const [event] = await db.insert(eventTable).values(input).returning()
+
+  return event satisfies Event
+}
+
 export const getEventItemsCount = async () => {
   const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
 
@@ -104,12 +117,12 @@ export const getBookmarkedEventItems = async ({
   return bookmarkedEventItems satisfies Event[] as Event[]
 }
 
-type DeleteEventOptions = {
+type DeleteEventItemOptions = {
   eventId: Event["id"]
   userId: User["id"]
 }
 
-export const deleteEvent = async ({ eventId, userId }: DeleteEventOptions): Promise<Event | null> => {
+export const deleteEventItem = async ({ eventId, userId }: DeleteEventItemOptions): Promise<Event | null> => {
   const canDeleteEvent = await havePermission(userId, Permission.eventDelete)
 
   const isOwner = await db.query.event.findFirst({

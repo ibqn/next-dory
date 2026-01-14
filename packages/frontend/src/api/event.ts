@@ -4,6 +4,33 @@ import { keepPreviousData, queryOptions } from "@tanstack/react-query"
 import type { Event } from "database/src/drizzle/schema/event"
 import type { ParamIdSchema } from "database/src/validators/param"
 import { type PaginationSchema, paginationSchema } from "database/src/validators/pagination"
+import type { CreateEventSchema } from "database/src/validators/event"
+
+export const createEventItem = async (input: CreateEventSchema) => {
+  try {
+    const { data: response } = await axios.post<ApiResponse<Event>>("/event", input)
+    if (!response.success) {
+      return null
+    }
+    return response.data
+  } catch (error) {
+    console.log("Error creating event item:", error)
+    return null
+  }
+}
+
+export const deleteEventItem = async ({ id }: ParamIdSchema) => {
+  try {
+    const { data: response } = await axios.delete<ApiResponse<Event>>(`/event/${id}`)
+    if (!response.success) {
+      return null
+    }
+    return response.data
+  } catch (error) {
+    console.log("Error deleting event item:", error)
+    return null
+  }
+}
 
 export const getEventItem = async ({ id }: ParamIdSchema) => {
   try {
