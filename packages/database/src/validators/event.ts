@@ -1,5 +1,6 @@
 import { z } from "zod"
 import { event } from "./constants"
+import { slugify } from "../utils/slugify"
 
 export const eventIdSchema = z.uuid()
 
@@ -11,6 +12,15 @@ export const eventSlugSchema = z
   .max(event.slug.maxLength, {
     message: `Event slug must not exceed ${event.slug.maxLength} characters.`,
   })
+  .refine(
+    (str) => {
+      return str === slugify(str)
+    },
+    {
+      message:
+        "Event slug must contain only lowercase letters, numbers, and hyphens. No spaces or special characters allowed.",
+    }
+  )
 
 export const descriptionSchema = z
   .string()
