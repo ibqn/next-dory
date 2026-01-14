@@ -22,6 +22,13 @@
       "when": 1768053794996,
       "tag": "0002_medical_professor_monster",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1768407573228,
+      "tag": "0003_sleepy_squirrel_girl",
+      "breakpoints": true
     }
   ]
 }
