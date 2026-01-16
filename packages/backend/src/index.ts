@@ -16,6 +16,7 @@ import { userRoute } from "./routes/user"
 import { socialAuthRoute } from "./routes/social-auth"
 import { eventRoute } from "./routes/event"
 import { accountRoute } from "./routes/account"
+import { bookmarkRoute } from "./routes/bookmark"
 
 const app = new Hono<ExtEnv>()
 
@@ -74,6 +75,7 @@ export const routes = app
   .route("/user", userRoute)
   .route("/event", eventRoute)
   .route("/account", accountRoute)
+  .route("/bookmark", bookmarkRoute)
 
 const port = env.PORT
 console.log(`Server is running on http://localhost:${port}`)
