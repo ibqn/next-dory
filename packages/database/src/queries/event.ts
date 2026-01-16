@@ -47,7 +47,13 @@ type GetEventItemOptions = {
 export const getEventItem = async ({ eventId }: GetEventItemOptions) => {
   const event = await db.query.event.findFirst({
     where: (event, { eq }) => eq(event.id, eventId),
-    with: { user: { columns: { passwordHash: false } }, polls: true, questions: true, participants: true },
+    with: {
+      user: { columns: { passwordHash: false } },
+      polls: true,
+      questions: true,
+      participants: true,
+      bookmarkedBy: true,
+    },
   })
 
   if (!event) {
@@ -84,6 +90,7 @@ export const getEventItems = async ({ page, limit, sortedBy, order }: GetEventIt
       polls: true,
       questions: true,
       participants: true,
+      bookmarkedBy: true,
     },
   })
 
