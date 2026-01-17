@@ -32,6 +32,7 @@ export type Event = InferSelectModel<typeof eventTable> & {
   polls?: Poll[] | null
   questions?: Question[] | null
   bookmarkedBy?: EventBookmark[] | null
+  isBookmarked?: boolean
 }
 
 export const eventParticipantTable = schema.table(

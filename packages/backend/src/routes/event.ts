@@ -66,7 +66,9 @@ eventRoute
   })
   .get("/:id", zValidator("param", paramIdSchema), async (c) => {
     const { id: eventId } = c.req.valid("param")
-    const eventItem = await getEventItem({ eventId })
+    const { id: userId } = c.get("user") ?? {}
+
+    const eventItem = await getEventItem({ eventId, userId })
 
     if (!eventItem) {
       return c.json<ErrorResponse>({ success: false, error: "Event not found" }, 404)

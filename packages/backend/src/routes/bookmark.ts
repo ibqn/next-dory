@@ -10,7 +10,7 @@ import type { EventBookmark } from "database/src/drizzle/schema/event"
 
 export const bookmarkRoute = new Hono<ExtEnv>()
 
-bookmarkRoute.get("/event/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
+bookmarkRoute.post("/event/:id", signedIn, zValidator("param", paramIdSchema), async (c) => {
   const user = c.get("user") as User
 
   const { id: eventId } = c.req.valid("param")

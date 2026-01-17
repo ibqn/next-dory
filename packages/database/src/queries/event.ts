@@ -42,9 +42,10 @@ export const getBookmarkedEventItemsCount = async ({ userId }: GetBookmarkedEven
 
 type GetEventItemOptions = {
   eventId: Event["id"]
+  userId?: User["id"]
 }
 
-export const getEventItem = async ({ eventId }: GetEventItemOptions) => {
+export const getEventItem = async ({ eventId, userId }: GetEventItemOptions): Promise<Event | null> => {
   const event = await db.query.event.findFirst({
     where: (event, { eq }) => eq(event.id, eventId),
     with: {
@@ -60,7 +61,13 @@ export const getEventItem = async ({ eventId }: GetEventItemOptions) => {
     return null
   }
 
-  return event satisfies Event as Event
+  const isBookmarked = userId
+    ? !!(await db.query.eventBookmark.findFirst({
+        where: and(eq(eventBookmarkTable.eventId, eventId), eq(eventBookmarkTable.userId, userId)),
+      }))
+    : false
+
+  return { ...event, isBookmarked } satisfies Event
 }
 
 type GetEventItemsOptions = PaginationSchema

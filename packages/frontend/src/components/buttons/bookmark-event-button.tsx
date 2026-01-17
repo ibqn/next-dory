@@ -3,14 +3,14 @@
 import type { Event } from "database/src/drizzle/schema/event"
 import { debounce } from "lodash-es"
 import { BookmarkIcon, BookmarkCheckIcon } from "lucide-react"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { toast } from "sonner"
 import { validateQueryOptions } from "@/api/auth"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { Route } from "@/routes"
+import { useBookmarkEvent } from "@/hooks/use-bookmark-event"
 
 type Props = {
   event: Event
@@ -21,21 +21,21 @@ export const BookmarkEventButton = ({ event }: Props) => {
 
   const router = useRouter()
 
-  const [isBookmarked, setIsBookmarked] = useState(false)
+  const isBookmarked = event.isBookmarked
 
-  const handleBookmark = () => {
-    toggleClientBookmark()
+  const { mutate: toggleBookmarkEvent } = useBookmarkEvent()
 
-    console.log("Bookmarking event...")
-  }
-
-  const toggleClientBookmark = () => {
-    const wasBookmarked = isBookmarked
-
-    setIsBookmarked((prev) => !prev)
-
-    toast(wasBookmarked ? "Event removed from bookmarks!" : "Event added to bookmarks!")
-  }
+  const handleBookmark = useCallback(
+    debounce(
+      () => {
+        toggleBookmarkEvent({ id: event.id })
+        console.log("Bookmarking event...")
+      },
+      300,
+      { leading: true, trailing: false }
+    ),
+    [event.id, toggleBookmarkEvent]
+  )
 
   if (!user) {
     return (

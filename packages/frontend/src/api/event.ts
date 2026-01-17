@@ -45,9 +45,11 @@ export const getEventItem = async ({ id }: ParamIdSchema) => {
   }
 }
 
+export const eventQueryKey = (paramUuid?: ParamIdSchema) => ["event", paramUuid?.id] as const
+
 export const eventQueryOptions = (paramUuid?: ParamIdSchema) => {
   return queryOptions({
-    queryKey: ["event", paramUuid?.id ?? ""] as const,
+    queryKey: eventQueryKey(paramUuid),
     queryFn: () => (paramUuid?.id ? getEventItem({ id: paramUuid?.id }) : null),
     enabled: !!paramUuid?.id,
   })
