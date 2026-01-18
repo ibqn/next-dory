@@ -4,7 +4,7 @@ import { keepPreviousData, queryOptions } from "@tanstack/react-query"
 import type { Event } from "database/src/drizzle/schema/event"
 import type { ParamIdSchema } from "database/src/validators/param"
 import { type PaginationSchema, paginationSchema } from "database/src/validators/pagination"
-import type { CreateEventSchema } from "database/src/validators/event"
+import type { CreateEventSchema, UpdateEventSchema } from "database/src/validators/event"
 
 export const createEventItem = async (input: CreateEventSchema) => {
   try {
@@ -15,6 +15,19 @@ export const createEventItem = async (input: CreateEventSchema) => {
     return response.data
   } catch (error) {
     console.log("Error creating event item:", error)
+    return null
+  }
+}
+
+export const updateEventItem = async (input: UpdateEventSchema & ParamIdSchema) => {
+  try {
+    const { data: response } = await axios.patch<ApiResponse<Event>>(`/event/${input.id}`, input)
+    if (!response.success) {
+      return null
+    }
+    return response.data
+  } catch (error) {
+    console.log("Error updating event item:", error)
     return null
   }
 }

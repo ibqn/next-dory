@@ -10,21 +10,23 @@ import { toast } from "sonner"
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { InputGroup, InputGroupAddon, InputGroupText, InputGroupTextarea } from "@/components/ui/input-group"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { createEventItem, eventListQueryOptions } from "@/api/event"
+import { createEventItem, eventListQueryOptions, eventQueryKey, updateEventItem } from "@/api/event"
 import { slugify } from "database/src/utils/slugify"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
+import type { Event } from "database/src/drizzle/schema/event"
 
 type Props = {
+  event?: Event
   onSuccess?: () => void
 }
 
-export const CreateEventForm = ({ onSuccess: handleSuccess }: Props) => {
+export const CreateUpdateEventForm = ({ event, onSuccess: handleSuccess }: Props) => {
   const form = useForm<CreateEventSchema>({
     resolver: zodResolver(createEventSchema),
     defaultValues: {
-      name: "",
-      slug: "",
-      description: "",
+      name: event?.name ?? "",
+      slug: event?.slug ?? "",
+      description: event?.description ?? "",
     },
   })
 
@@ -38,29 +40,38 @@ export const CreateEventForm = ({ onSuccess: handleSuccess }: Props) => {
 
   const queryClient = useQueryClient()
 
-  const { mutate: createEvent, isPending } = useMutation({
-    mutationFn: createEventItem,
+  const { mutate: createUpdateEvent, isPending } = useMutation({
+    mutationFn: event ? (values: CreateEventSchema) => updateEventItem({ id: event.id, ...values }) : createEventItem,
     onError: () => {
       toast("Something went wrong", {
-        description: "Failed to create the event!",
+        description: `Failed to ${event ? "update" : "create"} the event!`,
       })
     },
     onSuccess: () => {
       handleSuccess?.()
 
-      toast("Your event has been created 🎉")
+      toast(`Your event has been ${event ? "updated" : "created"} 🎉`)
     },
     onSettled: async () => {
       form.reset()
       await queryClient.invalidateQueries({ queryKey: eventListQueryOptions().queryKey })
+
+      if (event) {
+        await queryClient.invalidateQueries({
+          queryKey: eventQueryKey({ id: event.id }),
+        })
+      }
     },
   })
 
   const isFieldDisabled = form.formState.isSubmitting || isPending
 
   const onSubmit = form.handleSubmit(async (values: CreateEventSchema) => {
-    createEvent(values)
+    createUpdateEvent(values)
   })
+
+  const pendingButtonText = useMemo(() => (event ? "Updating event..." : "Creating event..."), [event])
+  const actionButtonText = useMemo(() => (event ? "Update Event" : "Create Event"), [event])
 
   return (
     <FormProvider {...form}>
@@ -139,7 +150,7 @@ export const CreateEventForm = ({ onSuccess: handleSuccess }: Props) => {
         </FieldGroup>
 
         <Button type="submit" className="mt-10 w-full" disabled={isFieldDisabled}>
-          {isPending ? "Creating event..." : "Create Event"}
+          {isPending ? pendingButtonText : actionButtonText}
         </Button>
       </form>
     </FormProvider>

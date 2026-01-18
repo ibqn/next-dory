@@ -1,7 +1,7 @@
 "use client"
 
 import { type PropsWithChildren, useState } from "react"
-import { CreateEventForm } from "@/components/forms/create-event-form"
+import { CreateUpdateEventForm } from "@/components/forms/create-update-event-form"
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 type Props = PropsWithChildren
@@ -16,7 +16,7 @@ export const NewEventDialog = ({ children }: Props) => {
       <DialogContent>
         <DialogTitle>New Event</DialogTitle>
 
-        <CreateEventForm onSuccess={() => setOpen(false)} />
+        <CreateUpdateEventForm onSuccess={() => setOpen(false)} />
       </DialogContent>
     </Dialog>
   )

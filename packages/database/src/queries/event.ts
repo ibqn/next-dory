@@ -19,6 +19,37 @@ export const createEventItem = async (input: CreateEventOptions): Promise<Event>
   return event satisfies Event
 }
 
+export type UpdateEventOptions = {
+  eventId: Event["id"]
+  userId: User["id"]
+  name?: Event["name"]
+  slug?: Event["slug"]
+  description?: Event["description"]
+}
+
+export const updateEventItem = async (input: UpdateEventOptions): Promise<Event | null> => {
+  const { eventId, userId, ...updateData } = input
+
+  const canUpdateEvent = await havePermission(userId, Permission.eventUpdate)
+
+  const isOwner = await db.query.event.findFirst({
+    where: and(eq(eventTable.id, eventId), eq(eventTable.userId, userId)),
+    columns: { id: true },
+  })
+
+  if (!isOwner && !canUpdateEvent) {
+    return null
+  }
+
+  const [event] = await db.update(eventTable).set(updateData).where(eq(eventTable.id, eventId)).returning()
+
+  if (!event) {
+    return null
+  }
+
+  return event satisfies Event
+}
+
 export const getEventItemsCount = async () => {
   const [{ count }] = await db.select({ count: countDistinct(eventTable.id) }).from(eventTable)
 

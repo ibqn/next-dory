@@ -4,7 +4,7 @@ import { cn } from "@/lib/class-names"
 import { EditIcon, SettingsIcon, TrashIcon } from "lucide-react"
 import { useState } from "react"
 import { DeleteEventDialog } from "@/components/dialogs/delete-event-dialog"
-// import { UpdateEventDialog } from "../dialogs/UpdateEventDialog"
+import { UpdateEventDialog } from "@/components/dialogs/update-event-dialog"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { Event } from "database/src/drizzle/schema/event"
@@ -52,14 +52,7 @@ export const EventAdminMenu = ({ event, className }: Props) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/*Dialogs
-      <UpdateEventDialog
-        open={openUpdateDialog}
-        onOpenChange={setOpenUpdateDialog}
-        event={event}
-        onSuccess={() => setOpenUpdateDialog(false)}
-      />*/}
-
+      <UpdateEventDialog open={openUpdateDialog} onOpenChange={setOpenUpdateDialog} event={event} />
       <DeleteEventDialog open={openDeleteDialog} onOpenChange={setOpenDeleteDialog} eventId={event.id} />
     </>
   )

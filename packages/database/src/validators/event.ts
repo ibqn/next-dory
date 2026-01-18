@@ -47,7 +47,6 @@ export const createEventSchema = z.object({
 })
 
 export const updateEventSchema = z.object({
-  eventId: eventIdSchema,
   name: eventNameSchema.optional(),
   slug: eventSlugSchema.optional(),
   description: descriptionSchema.optional(),

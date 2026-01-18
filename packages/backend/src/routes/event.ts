@@ -11,12 +11,13 @@ import {
   getBookmarkedEventItems,
   deleteEventItem,
   createEventItem,
+  updateEventItem,
 } from "database/src/queries/event"
 import type { User } from "database/src/drizzle/schema/auth"
 import type { Event } from "database/src/drizzle/schema/event"
 import type { ErrorResponse, PaginatedSuccessResponse, SuccessResponse } from "database/src/types"
 import { paramIdSchema } from "database/src/validators/param"
-import { createEventSchema } from "database/src/validators/event"
+import { createEventSchema, updateEventSchema } from "database/src/validators/event"
 
 export const eventRoute = new Hono<ExtEnv>()
 
@@ -62,6 +63,25 @@ eventRoute
       data: eventItems,
       message: "Bookmarked event items retrieved",
       pagination: { page, totalPages: Math.ceil(eventCount / limit), totalItems: eventCount },
+    })
+  })
+  .patch("/:id", signedIn, zValidator("param", paramIdSchema), zValidator("json", updateEventSchema), async (c) => {
+    const { id: eventId } = c.req.valid("param")
+    const inputData = c.req.valid("json")
+    const user = c.get("user") as User
+
+    const eventItem = await updateEventItem({ eventId, userId: user.id, ...inputData })
+    if (!eventItem) {
+      return c.json<ErrorResponse>(
+        { success: false, error: "Event not found or you do not have permission to update it" },
+        404
+      )
+    }
+
+    return c.json<SuccessResponse<Event>>({
+      success: true,
+      data: eventItem,
+      message: "Event updated",
     })
   })
   .get("/:id", zValidator("param", paramIdSchema), async (c) => {
