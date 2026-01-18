@@ -24,7 +24,7 @@ export const EventAdminMenu = ({ event, className }: Props) => {
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
 
-  const isAdmin = event.userId === user?.id
+  const isAdmin = user && event.userId === user?.id
 
   if (!isAdmin) {
     return null
