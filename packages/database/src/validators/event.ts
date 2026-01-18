@@ -4,6 +4,15 @@ import { slugify } from "../utils/slugify"
 
 export const eventIdSchema = z.uuid()
 
+export const eventNameSchema = z
+  .string()
+  .min(event.name.minLength, {
+    message: `Event name must have at least ${event.name.minLength} characters.`,
+  })
+  .max(event.name.maxLength, {
+    message: `Event name must not exceed ${event.name.maxLength} characters.`,
+  })
+
 export const eventSlugSchema = z
   .string()
   .min(event.slug.minLength, {
@@ -32,21 +41,16 @@ export const descriptionSchema = z
   })
 
 export const createEventSchema = z.object({
-  name: z
-    .string()
-    .min(event.name.minLength, {
-      message: `Event name must have at least ${event.name.minLength} characters.`,
-    })
-    .max(event.name.maxLength, {
-      message: `Event name must not exceed ${event.name.maxLength} characters.`,
-    }),
+  name: eventNameSchema,
   slug: eventSlugSchema,
   description: descriptionSchema,
 })
 
 export const updateEventSchema = z.object({
   eventId: eventIdSchema,
-  description: descriptionSchema,
+  name: eventNameSchema.optional(),
+  slug: eventSlugSchema.optional(),
+  description: descriptionSchema.optional(),
 })
 
 export const deleteEventSchema = z.object({
