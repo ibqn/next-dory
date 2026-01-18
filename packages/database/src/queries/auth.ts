@@ -41,23 +41,23 @@ export const signUp = async (inputData: SignupSchema) => {
 }
 
 export const signIn = async (inputData: SigninSchema) => {
-  const { username, password } = inputData
+  const { email, password } = inputData
   const user = await db.query.user.findFirst({
-    where: ({ username: u }, { eq }) => eq(u, username),
+    where: (user, { eq }) => eq(user.email, email),
   })
 
   if (!user) {
-    return { token: null }
+    return { token: null, session: null }
   }
 
   if (!user.passwordHash) {
-    return { token: null }
+    return { token: null, session: null }
   }
 
   const validPassword = await argon2.verify(user.passwordHash, password)
 
   if (!validPassword) {
-    return { token: null }
+    return { token: null, session: null }
   }
 
   const token = generateSessionToken()
@@ -69,7 +69,7 @@ export const signIn = async (inputData: SigninSchema) => {
 export const getPasswordResetToken = async (inputData: ResetPasswordSchema): Promise<ApiResponse<string>> => {
   const { email } = inputData
   const user = await db.query.user.findFirst({
-    where: ({ email: e }, { eq }) => eq(e, email),
+    where: (user, { eq }) => eq(user.email, email),
   })
 
   if (!user) {
