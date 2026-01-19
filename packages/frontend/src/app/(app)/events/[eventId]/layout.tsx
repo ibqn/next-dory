@@ -1,7 +1,7 @@
 import { Suspense, type PropsWithChildren } from "react"
 import { eventQueryOptions } from "@/api/event"
 import { getQueryClient } from "@/lib/query-client"
-import { EventLayout } from "@/components/event-layout"
+import { EventLayout } from "@/components/layout/event-layout"
 
 type Props = PropsWithChildren<{
   params: Promise<{
