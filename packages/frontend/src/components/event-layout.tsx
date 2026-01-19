@@ -13,6 +13,7 @@ import { ParticipantsTooltip } from "@/components/tooltips/participants-tooltip"
 import { CopyEventLinkButton } from "@/components/buttons/copy-event-link-button"
 import { BookmarkEventButton } from "@/components/buttons/bookmark-event-button"
 import { EventAdminMenu } from "@/components/menu/event-admin-menu"
+import { EventTabsNavigation } from "@/components/layout/event-tabs-navigation"
 
 type Props = PropsWithChildren
 
@@ -65,6 +66,7 @@ export const EventLayout = ({ children }: Props) => {
       </div>
 
       <div className="flex w-full flex-1 flex-col gap-x-4 overflow-auto pt-6 lg:flex-row">
+        <EventTabsNavigation className="lg:hidden" />
         <div className="flex grow overflow-auto pb-4">
           <ScrollArea className="relative flex grow rounded-lg bg-white px-2.5 py-4 lg:rounded-lg lg:p-6">
             {children}

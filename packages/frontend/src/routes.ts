@@ -1,6 +1,6 @@
 import type { Event } from "database/src/drizzle/schema/event"
 
-type EventRouteParams = {
+export type EventRouteParams = {
   eventId: Event["id"]
   eventSlug?: Event["slug"]
 }
