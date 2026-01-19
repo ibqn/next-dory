@@ -6,12 +6,11 @@ import { EventLayout } from "@/components/event-layout"
 type Props = PropsWithChildren<{
   params: Promise<{
     eventId: string
-    eventSlug: string
   }>
 }>
 
 export default async function EventLayoutServer({ children, params }: Props) {
-  const { eventId, eventSlug } = await params
+  const { eventId } = await params
 
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery(eventQueryOptions({ id: eventId }))

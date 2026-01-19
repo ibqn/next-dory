@@ -2,7 +2,8 @@
 
 import { eventQueryOptions } from "@/api/event"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { notFound, redirect, useParams } from "next/navigation"
+import { notFound, useParams } from "next/navigation"
+import { Redirect } from "@/components/redirect"
 
 export default function EventRedirect() {
   const params = useParams<{ eventId: string }>()
@@ -12,5 +13,5 @@ export default function EventRedirect() {
     notFound()
   }
 
-  redirect(`/events/${event.id}/${event.slug}`)
+  return <Redirect to={`/events/${event.id}/${event.slug}`} />
 }

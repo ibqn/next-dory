@@ -1,8 +1,9 @@
 "use client"
 
 import { eventQueryOptions } from "@/api/event"
+import { Redirect } from "@/components/redirect"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { notFound, redirect, useParams } from "next/navigation"
+import { notFound, useParams } from "next/navigation"
 
 export default function EventPage() {
   const params = useParams<{
@@ -16,13 +17,13 @@ export default function EventPage() {
   }
 
   if (event.slug !== params.eventSlug) {
-    redirect(`/events/${event.id}/${event.slug}`)
+    return <Redirect to={`/events/${event.id}/${event.slug}/polls`} />
   }
 
   return (
     <div className="flex grow flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold">Event Page</h1>
-      <p className="mt-4">This is the event page. You can view event details here.</p>
+      <h1 className="text-2xl font-bold">Polls Page</h1>
+      <p className="mt-4">This is the polls page. You can view event polls here.</p>
     </div>
   )
 }
