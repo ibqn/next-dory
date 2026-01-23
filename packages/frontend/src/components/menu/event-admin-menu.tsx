@@ -8,8 +8,7 @@ import { UpdateEventDialog } from "@/components/dialogs/update-event-dialog"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { Event } from "database/src/drizzle/schema/event"
-import { useSuspenseQuery } from "@tanstack/react-query"
-import { validateQueryOptions } from "@/api/auth"
+import { useIsEventOwner } from "@/hooks/use-is-participant-view"
 
 type Props = {
   event: Event
@@ -17,16 +16,12 @@ type Props = {
 }
 
 export const EventAdminMenu = ({ event, className }: Props) => {
-  const {
-    data: { user },
-  } = useSuspenseQuery(validateQueryOptions())
-
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
 
-  const isAdmin = user && event.userId === user?.id
+  const isEventOwner = useIsEventOwner()
 
-  if (!isAdmin) {
+  if (!isEventOwner) {
     return null
   }
 
