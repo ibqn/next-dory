@@ -60,7 +60,7 @@ export const EventFloatingSidebar = ({ ownerId, questionsCount, pollsCount }: Pr
 
         {isEventOwner && (
           <div className="mt-auto w-full space-y-4">
-            <EventViewModeSelect key={String(isParticipantView)} />
+            <EventViewModeSelect />
           </div>
         )}
       </div>
