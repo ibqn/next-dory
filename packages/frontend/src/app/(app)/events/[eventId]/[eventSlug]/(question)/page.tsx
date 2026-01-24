@@ -4,6 +4,7 @@ import { eventQueryOptions } from "@/api/event"
 import { RefreshButton } from "@/components/buttons/refresh-button"
 import { QuestionTabNavigation } from "@/components/layout/question-tab-tavigation"
 import { Redirect } from "@/components/redirect"
+import { QuestionSortBySelect } from "@/components/selects/question-sortby-select"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { notFound, useParams } from "next/navigation"
 
@@ -33,7 +34,7 @@ export default function EventQuestionPage() {
           <div className="inline-flex items-center p-0.5 lg:gap-x-2">
             <span className="hidden text-sm text-nowrap text-gray-500 lg:inline-block">Sort By:</span>
 
-            {/* <QuestionsSortBySelect sortBy={orderBy} /> */}
+            <QuestionSortBySelect />
           </div>
         </div>
       </div>
