@@ -40,7 +40,7 @@ export const QuestionSortBySelect = () => {
   }
 
   return (
-    <Select key={`${pathname}${searchParams.toString()}`} defaultValue={sortBy} onValueChange={handleValueChange}>
+    <Select defaultValue={sortBy} onValueChange={handleValueChange}>
       <SelectTrigger className="bg-white text-xs lg:text-sm">
         <SelectValue />
       </SelectTrigger>

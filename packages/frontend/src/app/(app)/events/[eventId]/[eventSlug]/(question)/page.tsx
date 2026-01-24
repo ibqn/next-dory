@@ -2,7 +2,7 @@
 
 import { eventQueryOptions } from "@/api/event"
 import { RefreshButton } from "@/components/buttons/refresh-button"
-import { QuestionTabNavigation } from "@/components/layout/question-tab-tavigation"
+import { QuestionTabNavigation } from "@/components/layout/question-tab-navigation"
 import { Redirect } from "@/components/redirect"
 import { QuestionSortBySelect } from "@/components/selects/question-sortby-select"
 import { useSuspenseQuery } from "@tanstack/react-query"

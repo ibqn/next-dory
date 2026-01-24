@@ -37,7 +37,7 @@ export const QuestionTabNavigation = () => {
   }
 
   return (
-    <nav className="inline-flex gap-1">
+    <nav className="inline-flex gap-0.5">
       <NavTabButton isActive={activeTab === QuestionTab.open} onClick={() => handleTabChange(QuestionTab.open)}>
         Open
       </NavTabButton>
