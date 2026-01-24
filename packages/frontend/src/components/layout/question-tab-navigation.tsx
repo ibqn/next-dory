@@ -1,7 +1,7 @@
 "use client"
 
 import { QuestionPageQueryParams } from "@/config/question-page-query-params"
-import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { NavTabButton } from "@/components/buttons/nav-tab-button"
 import { useMemo } from "react"
 
@@ -13,11 +13,6 @@ const QuestionTab = {
 type QuestionTabs = (typeof QuestionTab)[keyof typeof QuestionTab]
 
 export const QuestionTabNavigation = () => {
-  const { eventId, eventSlug } = useParams<{
-    eventId: string
-    eventSlug?: string
-  }>()
-
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
