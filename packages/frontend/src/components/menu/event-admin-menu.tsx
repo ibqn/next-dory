@@ -8,7 +8,7 @@ import { UpdateEventDialog } from "@/components/dialogs/update-event-dialog"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type { Event } from "database/src/drizzle/schema/event"
-import { useIsEventOwner } from "@/hooks/use-is-participant-view"
+import { useIsEventOwner, useIsParticipantView } from "@/hooks/use-is-participant-view"
 
 type Props = {
   event: Event
@@ -20,8 +20,9 @@ export const EventAdminMenu = ({ event, className }: Props) => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false)
 
   const isEventOwner = useIsEventOwner()
+  const isParticipantView = useIsParticipantView()
 
-  if (!isEventOwner) {
+  if (!isEventOwner || isParticipantView) {
     return null
   }
 
