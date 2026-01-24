@@ -1,7 +1,7 @@
 export const QuestionPageQueryParams = {
-  sortBy: "sortBy",
+  sortBy: "sort-by",
   resolved: "resolved",
-  questionId: "questionId",
+  questionId: "question-id",
 } as const
 
 export type QuestionPageQueryParams = (typeof QuestionPageQueryParams)[keyof typeof QuestionPageQueryParams]
