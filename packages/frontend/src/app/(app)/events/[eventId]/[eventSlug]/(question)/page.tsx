@@ -1,18 +1,23 @@
 "use client"
 
 import { eventQueryOptions } from "@/api/event"
+import { ClearSearchParamsButton } from "@/components/buttons/clear-search-params-button"
 import { RefreshButton } from "@/components/buttons/refresh-button"
+import { CreateQuestionForm } from "@/components/forms/create-question-form"
 import { QuestionTabNavigation } from "@/components/layout/question-tab-navigation"
 import { Redirect } from "@/components/redirect"
 import { QuestionSortBySelect } from "@/components/selects/question-sortby-select"
+import { QuestionPageQueryParams } from "@/config/question-page-query-params"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { notFound, useParams } from "next/navigation"
+import { notFound, useParams, useSearchParams } from "next/navigation"
+import { useMemo } from "react"
 
 export default function EventQuestionPage() {
   const params = useParams<{
     eventId: string
     eventSlug: string
   }>()
+  const searchParams = useSearchParams()
 
   const { data: event } = useSuspenseQuery(eventQueryOptions({ id: params.eventId }))
 
@@ -23,6 +28,9 @@ export default function EventQuestionPage() {
   if (event.slug !== params.eventSlug) {
     return <Redirect to={`/events/${event.id}/${event.slug}`} />
   }
+  const questionId = searchParams.get(QuestionPageQueryParams.questionId)
+
+  const hasFilters = useMemo(() => !!questionId, [questionId])
 
   return (
     <div className="flex grow flex-col">
@@ -38,8 +46,24 @@ export default function EventQuestionPage() {
           </div>
         </div>
       </div>
-      <h1 className="text-2xl font-bold">Event Page</h1>
-      <p className="mt-4">This is the event page. You can view event details here.</p>
+
+      {hasFilters && (
+        <div className="mt-4 flex items-center gap-x-2">
+          <p>You have active filters:</p>
+
+          <ClearSearchParamsButton />
+        </div>
+      )}
+
+      {!hasFilters && (
+        <CreateQuestionForm
+          className="mt-5"
+          eventId={params.eventId}
+          onSuccess={(newQuestion) => {
+            console.log("Question created:", newQuestion)
+          }}
+        />
+      )}
     </div>
   )
 }
