@@ -17,6 +17,7 @@ import { socialAuthRoute } from "./routes/social-auth"
 import { eventRoute } from "./routes/event"
 import { accountRoute } from "./routes/account"
 import { bookmarkRoute } from "./routes/bookmark"
+import { questionRoute } from "./routes/question"
 
 const app = new Hono<ExtEnv>()
 
@@ -74,6 +75,7 @@ export const routes = app
   .route("/auth", authRoute)
   .route("/user", userRoute)
   .route("/event", eventRoute)
+  .route("/question", questionRoute)
   .route("/account", accountRoute)
   .route("/bookmark", bookmarkRoute)
 
