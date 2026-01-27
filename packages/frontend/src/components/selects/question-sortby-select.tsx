@@ -4,14 +4,7 @@ import { QuestionPageQueryParams } from "@/config/question-page-query-params"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { match } from "ts-pattern"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-const QuestionOrderBy = {
-  mostPopular: "most-popular",
-  newest: "newest",
-  oldest: "oldest",
-} as const
-
-type QuestionOrderBy = (typeof QuestionOrderBy)[keyof typeof QuestionOrderBy]
+import { QuestionOrderBy } from "database/src/validators/question"
 
 export const QuestionSortBySelect = () => {
   const searchParams = useSearchParams()
