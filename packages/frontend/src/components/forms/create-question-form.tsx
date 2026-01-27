@@ -89,14 +89,14 @@ export const CreateQuestionForm = ({ eventId, onSuccess: handleSuccess, classNam
                     </InputGroupText>
                   </InputGroupAddon>
                 </InputGroup>
-                <FieldDescription>Be specific and clear to get the best answers from the community.</FieldDescription>
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
             )}
           />
         </FieldGroup>
 
-        <div className="-mt-3 flex justify-end">
+        <div className="mt-3 flex justify-between gap-x-4">
+          <FieldDescription>Be specific and clear to get the best answers from the community.</FieldDescription>
           <div className="flex justify-end">
             {isAuthenticated ? (
               <Button type="submit" size="lg" disabled={isFieldDisabled}>
@@ -105,7 +105,7 @@ export const CreateQuestionForm = ({ eventId, onSuccess: handleSuccess, classNam
                 <span className="text-xs lg:text-sm">{isPending ? "Posting..." : "Ask"}</span>
               </Button>
             ) : (
-              <Link href="/auth/signin" className={cn(buttonVariants({ variant: "default", size: "lg" }))}>
+              <Link href="/signin" className={cn(buttonVariants({ variant: "default", size: "lg" }))}>
                 <MessageSquareIcon className="mr-2 size-4" />
 
                 <span className="text-xs lg:text-sm">Ask</span>
