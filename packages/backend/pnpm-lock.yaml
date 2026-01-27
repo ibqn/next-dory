@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.9(hono@4.11.5)
+        version: 1.19.9(hono@4.11.6)
       '@hono/zod-validator':
         specifier: ^0.7.6
-        version: 0.7.6(hono@4.11.5)(zod@4.3.6)
+        version: 0.7.6(hono@4.11.6)(zod@4.3.6)
       arctic:
         specifier: ^3.7.0
         version: 3.7.0
@@ -24,11 +24,11 @@ importers:
         specifier: workspace:*
         version: link:../database
       hono:
-        specifier: ^4.11.5
-        version: 4.11.5
+        specifier: ^4.11.6
+        version: 4.11.6
       hono-pino:
         specifier: ^0.10.3
-        version: 0.10.3(hono@4.11.5)(pino@10.3.0)
+        version: 0.10.3(hono@4.11.6)(pino@10.3.0)
       pino:
         specifier: ^10.3.0
         version: 10.3.0
@@ -369,8 +369,8 @@ packages:
       hono: '>=4.0.0'
       pino: '>=7.1.0'
 
-  hono@4.11.5:
-    resolution: {integrity: sha512-WemPi9/WfyMwZs+ZUXdiwcCh9Y+m7L+8vki9MzDw3jJ+W9Lc+12HGsd368Qc1vZi1xwW8BWMMsnK5efYKPdt4g==}
+  hono@4.11.6:
+    resolution: {integrity: sha512-ofIiiHyl34SV6AuhE3YT2mhO5HRWokce+eUYE82TsP6z0/H3JeJcjVWEMSIAiw2QkjDOEpES/lYsg8eEbsLtdw==}
     engines: {node: '>=16.9.0'}
 
   joycon@3.1.1:
@@ -548,13 +548,13 @@ snapshots:
   '@esbuild/win32-x64@0.27.1':
     optional: true
 
-  '@hono/node-server@1.19.9(hono@4.11.5)':
+  '@hono/node-server@1.19.9(hono@4.11.6)':
     dependencies:
-      hono: 4.11.5
+      hono: 4.11.6
 
-  '@hono/zod-validator@0.7.6(hono@4.11.5)(zod@4.3.6)':
+  '@hono/zod-validator@0.7.6(hono@4.11.6)(zod@4.3.6)':
     dependencies:
-      hono: 4.11.5
+      hono: 4.11.6
       zod: 4.3.6
 
   '@oslojs/asn1@1.0.0':
@@ -726,13 +726,13 @@ snapshots:
 
   help-me@5.0.0: {}
 
-  hono-pino@0.10.3(hono@4.11.5)(pino@10.3.0):
+  hono-pino@0.10.3(hono@4.11.6)(pino@10.3.0):
     dependencies:
       defu: 6.1.4
-      hono: 4.11.5
+      hono: 4.11.6
       pino: 10.3.0
 
-  hono@4.11.5: {}
+  hono@4.11.6: {}
 
   joycon@3.1.1: {}
 
