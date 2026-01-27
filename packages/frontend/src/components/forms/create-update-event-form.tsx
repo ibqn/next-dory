@@ -141,7 +141,7 @@ export const CreateUpdateEventForm = ({ event, onSuccess: handleSuccess }: Props
                   </InputGroupAddon>
                 </InputGroup>
                 <FieldDescription>
-                  Include steps to reproduce, expected behavior, and what actually happened.
+                  Brief description to let participants know what your event is about.
                 </FieldDescription>
                 {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
               </Field>
