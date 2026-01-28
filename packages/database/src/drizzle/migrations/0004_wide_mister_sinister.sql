@@ -1,0 +1,1 @@
+ALTER TABLE "drizzle"."question" ADD COLUMN "upvote_count" integer DEFAULT 0 NOT NULL;
