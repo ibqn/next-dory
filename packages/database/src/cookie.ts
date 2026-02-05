@@ -7,4 +7,4 @@ export const getSessionCookieOptions = (expiresAt?: Date) =>
     secure: process.env.NODE_ENV === "production",
     expires: expiresAt ?? new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
     path: "/",
-  } as const)
+  }) as const
