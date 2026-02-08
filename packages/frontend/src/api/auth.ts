@@ -1,4 +1,5 @@
 import type { SigninSchema } from "database/src/validators/signin"
+import type { SignupSchema } from "database/src/validators/signup"
 import { axios } from "./axios"
 import type { ApiResponse } from "database/src/types"
 import { queryOptions } from "@tanstack/react-query"
@@ -8,7 +9,7 @@ import type { ParamTokenSchema } from "database/src/validators/param"
 import type { NewPasswordSchema } from "database/src/validators/new-password"
 import { SessionValidationResult } from "database/src/lucia"
 
-export const postSignup = async (formData: SigninSchema) => {
+export const postSignup = async (formData: SignupSchema) => {
   const response = await axios.post<ApiResponse<User>>("/auth/signup", formData)
   return response.data
 }
